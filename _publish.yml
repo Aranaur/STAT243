@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: e200de11-271c-4423-8912-135d08c91915
+      url: https://aranaur.quarto.pub/stat243

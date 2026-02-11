@@ -1,0 +1,349 @@
+---
+title: "01 Basics of R"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+<style>
+/* Приховує весь блок "webR Code Links" у правій панелі */
+.quarto-code-links {
+  display: none !important;
+}
+
+/* На всяк випадок приховуємо кнопку історії, якщо вона з'явиться в іншому місці */
+#qwebrRHistoryButton {
+  display: none !important;
+}
+
+/* Приховує модальне вікно історії (для безпеки) */
+#qwebr-history-modal {
+  display: none !important;
+}
+</style>
+
+```{webr-r}
+#| context: output
+
+# --- CONFIGURATION & ANSWERS ---
+
+# Helper variables to generate correct answers
+ref_temp <- c(-7, 1, 3, 1, 3, 3, -2)
+ref_weekdays <- c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+ref_seq1 <- seq(4, 20, 4)
+ref_seq2 <- rev(ref_seq1)
+
+# Dictionary of correct answers
+solutions <- list(
+  "ex1"  = 120,
+  "ex8"  = ref_temp,
+  "ex9"  = sqrt(sum(ref_temp)),
+  "ex10" = ref_temp[2] * ref_temp[5] + ref_temp[1],
+  "ex11" = ref_weekdays,
+  "ex12" = structure(ref_temp, names = ref_weekdays[c(2,3,4,5,6,7,1)]), # Reordered names
+  "ex14" = c("Kateryna", "Max", "Vasyl", "Taras", "Yuliya", "Vika")[order(c(3, 2, 6, 5, 1, 4))],
+  "ex16" = ref_seq1,
+  "ex17" = ref_seq2,
+  "ex18" = c(ref_seq1, ref_seq2)
+)
+
+# --- CHECK FUNCTION ---
+
+check <- function(id, value, ...) {
+  args <- list(...)
+  
+  # 1. Dynamic Check for BMI (Exercise 2)
+  if (id == "ex2") {
+    if (length(args) < 2) {
+      cat("⚠️ Please provide weight and height to the check function: check('ex2', bmi, weight, height)\n")
+      return()
+    }
+    w <- args[[1]]
+    h <- args[[2]]
+    # Check formula logic
+    expected <- w / (h^2)
+    if (isTRUE(all.equal(value, expected, tolerance = 0.001))) {
+       cat(paste0("✅ Correct! For weight ", w, " and height ", h, ", the BMI is ", round(value, 2), "\n"))
+    } else {
+       cat("❌ Incorrect formula. Remember: bmi = weight / height^2\n")
+    }
+    return()
+  }
+
+  # 2. Static Check for other exercises
+  if (!id %in% names(solutions)) {
+    cat(paste("⚠️ Exercise ID", id, "not configured for auto-check.\n"))
+    return()
+  }
+  
+  expected <- solutions[[id]]
+  
+  # Compare with tolerance for numerics
+  if (isTRUE(all.equal(value, expected, tolerance = 0.01))) {
+    cat("✅ Correct! Well done.\n")
+  } else {
+    cat("❌ Incorrect. Please try again.\n")
+  }
+}
+```
+
+---
+
+::: {#exr-01}
+Compute the result of `45+35-20` and save it into variable `res1`. Then multiply it by 2 and save into `res2`.  
+Check your answer using `check("ex1", res2)`.
+
+```{webr-r}
+# ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊
+
+
+# Check the result
+check("ex1", res2)
+```
+:::
+
+---
+
+::: {#exr-02}
+Create a variable `weight` with **your** weight (in kg) and `height` with **your** height (in meters).  
+Calculate BMI (`weight / height^2`) and save it to `bmi`.  
+*Pass all three variables to the check function.*
+
+```{webr-r}
+# ଘ( ･ω･)_/ﾟ･:*:･｡☆
+
+
+# Check the result
+check("ex2", bmi, weight, height)
+```
+:::
+
+---
+
+::: {#exr-03}
+Check the definition of function `round()`.  
+What will be the result for `6.8`? What if it's `6.25`? What if you specify `digits = 1`?
+
+```{webr-r}
+# ଘ(∩^o^)⊃━☆゜
+
+
+
+```
+:::
+
+::: {.callout-tip collapse="true"}
+## Discussion
+`round()` rounds to the nearest even number when the digit is exactly 5 (IEC 60559 standard). That is why `round(6.5, 0)` might behave unexpectedly compared to school math.
+:::
+
+---
+
+::: {#exr-04}
+Try to use operator `%%`. For example `52 %% 5`. Guess what this operator does.
+
+```{webr-r}
+# ✩°｡⋆⸜(˙꒳​˙ )
+
+
+
+```
+:::
+
+---
+
+::: {#exr-05}
+What is the class of `"5"`, `"TRUE"`, `F`, and `six` (assuming `six` is a variable)?
+
+```{webr-r}
+# (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+
+
+
+```
+:::
+
+---
+
+::: {#exr-06}
+What function should be used instead of `____` so the result is `TRUE`?
+`is.character(____(round(6.2)))`
+
+```{webr-r}
+# ᓚ₍ ^. .^₎
+
+
+
+```
+:::
+
+---
+
+::: {#exr-07}
+Show the result of `c(1,2,3)` and `1:3`. Check the class of both. Explain the difference.
+
+```{webr-r}
+# ദ്ദി（• ˕ •マ.ᐟ
+
+
+
+```
+:::
+
+---
+
+::: {#exr-08}
+Create a vector named `temp` with maximum temperatures: `-7, 1, 3, 1, 3, 3, -2`.
+
+```{webr-r}
+# (❀❛ ֊ ❛„)♡
+
+
+# Check the result
+check("ex8", temp)
+```
+:::
+
+---
+
+::: {#exr-09}
+Calculate the square root of the **sum** of all elements in the vector `temp`.
+
+```{webr-r}
+# (๑'ᵕ'๑)⸝*
+
+
+# Check the result
+check("ex9", res_ex9)
+```
+:::
+
+---
+
+::: {#exr-10}
+Take the 2nd element of `temp`, multiply it by the 5th element, and add the 1st element.
+
+```{webr-r}
+# ദ്ദി/ᐠ｡‸｡ᐟ\
+
+
+# Check the result
+check("ex10", res_ex10)
+```
+:::
+
+---
+
+::: {#exr-11}
+Create a vector called `weekdays` with the names of the days (Monday to Sunday).
+
+```{webr-r}
+# 𓈒⟡₊⋆∘˚⊹ ࿔
+
+
+# Check the result
+check("ex11", weekdays)
+```
+:::
+
+---
+
+::: {#exr-12}
+Assign names to the `temp` vector using the `weekdays` vector.
+**Note:** The days in `temp` correspond to: Tue, Wed, Thu, Fri, Sat, Sun, Mon.
+You need to reorder `weekdays` correctly before assigning.
+
+```{webr-r}
+# . ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+
+
+# Check the result
+check("ex12", temp)
+```
+:::
+
+---
+
+::: {#exr-13}
+Try functions `sort()` and `order()` on `temp`. What is the difference?
+
+```{webr-r}
+# ฅ^ >ヮ<^₎
+
+
+
+```
+:::
+
+---
+
+::: {#exr-14}
+Sort the workers by rank.
+`vec1` are names, `vec2` are ranks (1 is best).
+Create a sorted vector of names called `sorted_workers`.
+
+```{webr-r}
+# ≽ ^⎚ ˕ ⎚^ ≼
+
+
+# Check the result
+check("ex14", sorted_workers)
+```
+:::
+
+---
+
+::: {#exr-15}
+Find the maximum, minimum, and average values for vector `temp`.
+
+```{webr-r}
+# (*´▽`*)
+
+
+
+```
+:::
+
+---
+
+::: {#exr-16}
+Using `seq()`, generate the sequence `4, 8, 12, 16, 20` and save it into `seq1`.
+
+```{webr-r}
+# ฅ^•ﻌ•^ฅ
+
+
+# Check the result
+check("ex16", seq1)
+```
+:::
+
+---
+
+::: {#exr-17}
+Use `rev()` on `seq1` and save the result into `seq2`.
+
+```{webr-r}
+# ☪︎ ִ ࣪𖤐 𐦍 ☾𖤓
+
+
+# Check the result
+check("ex17", seq2)
+```
+:::
+
+---
+
+::: {#exr-19}
+Combine vectors `seq1` and `seq2` using `c()` into a variable `seq`.
+Check the result.
+
+```{webr-r}
+# ᓚ₍ ^. .^₎
+
+
+# Check the result
+check("ex18", seq)
+```
+:::

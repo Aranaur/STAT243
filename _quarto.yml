@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+  resources:
+    - check.R
+
+book:
+  title: "STAT243: Data Analysis and Visualization in R"
+  author: "Ihor Miroshnychenko"
+  date: today
+  chapters:
+    - index.qmd
+    - 01.qmd
+    - 02.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    number-sections: false
+
+filters:
+  - webr
+
+
+

@@ -1,0 +1,5 @@
+# Preface {.unnumbered .unlisted}
+
+This is an interactive trainer for the STAT243 course, "Data Analysis and Visualization in R" at KSE.
+
+For interactivity, the [`quarto-webr`](https://quarto-webr.thecoatlessprofessor.com/) extension for [Quarto](https://quarto.org/) is used.
