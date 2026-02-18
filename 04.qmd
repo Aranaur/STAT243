@@ -187,7 +187,7 @@ Use function `read_excel()` from the library `readxl` to load the [`urbanpop.xls
 ---
 
 ::: {#exr-12}
-**Data Import: Bulk Loading (*)**
+**Data Import: Bulk Loading (\*)**
 
 Use `lapply` function to load data from `urbanpop.xlsx` file, from *multiple sheets*, into a list called `pop_list`.
 
