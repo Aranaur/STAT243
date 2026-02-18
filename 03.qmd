@@ -1,0 +1,318 @@
+---
+title: "03 Key R programming concepts in data analysis | Part 2"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Factors: Creation**
+
+Create a vector `vec` for outfit ratings: "Casual", "Drip", "Drip", "Casual", "Drip", "Slay", "Drip", "Slay", "Casual", "Drip", "Casual", "Slay".
+
+Convert it into a factor `fact` with levels "Casual", "Drip", "Slay".
+
+```{r}
+#| eval: false
+vec <- c("Casual", "Drip", "Drip", "Casual", "Drip", "Slay", 
+         "Drip", "Slay", "Casual", "Drip", "Casual", "Slay")
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-02}
+**Factors: Renaming Levels**
+
+Replace the levels "Casual", "Drip", "Slay" with "C", "D", "S" in the factor you created previously.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-03}
+**Factors: Adding Levels (\*)**
+
+Add a new factor level "Cringe" to the factor you created previously and add two elements "Cringe" in the end.
+
+*Hint:* For this, you need to recreate `fact` as character, combine with 2 "Cringe"s and put in levels the levels of previously created fact. Do the addition of elements in a single line of code.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-04}
+**Factors: Specific Rename**
+
+Rename only "Cringe" level of the factor to "Cr".
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-05}
+**Factors: Summary**
+
+Generate a summary of the factor you created previously.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-06}
+**Simulation: Coin Toss**
+
+1. Simulate a coin toss (1 for heads, 0 for tails).
+2. Use `ifelse()` to assign "Win" for heads and "Lose" for tails in a vector of 1000 random coin tosses.
+3. Make it a factor and then show the summary.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-07}
+**Data Frames: Creation**
+
+Create a data frame `city_ua` with the following vectors:
+
+* **City**: "Kyiv", "Lviv", "Odesa", "Kharkiv", "Dnipro"
+* **Population** (millions): 2.9, 0.7, 1.0, 1.4, 1.0
+* **Subway**: TRUE, FALSE, FALSE, TRUE, TRUE
+
+Extract the Population of "Odesa" in a matrix style.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-08}
+**Data Frames: Filtering**
+
+Extract all the rows where the population is greater than 1 million. Do it both in `data.frame` style and in matrix style.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-09}
+**Data Frames: Logical Subset**
+
+Create a subset of cities that do not have subway systems. Do it in both data frame style and matrix style.
+
+*Challenge:* To make things funnier, in your line of code don't use `TRUE`, `T`, `FALSE`, `F` :)
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-10}
+**Data Frames: New Column (*)**
+
+Add a new column to the data frame indicating whether the city is located in Eastern Ukraine (`TRUE` for "Kharkiv" and "Dnipro", `FALSE` otherwise).
+
+Try the solution without and with the operator `%in%` to check how it works.
+
+> Example of how `%in%` works: `vec %in% c("Cringe","Slay")` will give a logical vector indicating elements that are either "Cringe" or "Slay".
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-11}
+**Data Frames: Calculation**
+
+Calculate the mean population of cities that have a subway.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-12}
+**Data Analysis: Loading Data**
+
+Load the [`diabetes.csv`](class/diabetes.csv) into `diab` and print the summary of the data. Discuss.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-13}
+**Data Analysis: Basic Operations**
+
+Do the following actions with a line of code for each:
+
+1. Find the mean of the BMI column in the dataset.
+2. Select all rows where the Age is greater than 50.
+3. Select all patients with Age more than 50 and diabetes.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-14}
+**Data Analysis: Conditional Factor**
+
+Create a new factor column `bmi_level` in the dataset that indicates whether the BMI is greater than 25 (label as "High BMI" or "Normal BMI").
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-15}
+**Data Analysis: Group Comparison**
+
+In the diabetes dataset, compare the average BMI of those who have diabetes and those who don't.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-16}
+**Data Analysis: Sorting**
+
+Create sorted diabetes by increasing BMI. Check average Outcome in the first half and in the second half of the dataset. Explain the result.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-17}
+**Control Flow: While Loop**
+
+Create a while loop where `i` starts at 26.
+Print "i is not divisible by 11" (where i is a current number) in each iteration and stop if the square is divisible by 11.
+After the loop print "i is divisible by 11" using final "i".
+
+
+::: {.callout-tip collapse="true"}
+You may want to use `paste0()` function in this task.
+:::
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-18}
+**Data Frames: Student Grades**
+
+Create your own dataframe with students that attend these seminars. You need at least 7 students.
+
+Then you need columns:
+
+* **Name** (up to you)
+* **Exam I score**, **Exam II score** (put some grades from 0 to 20)
+* Column **"passed"**, factor with values "y" or "n". Fill it with "y" if total grade is >=30, "n" otherwise.
+
+Tasks:
+
+1. Reorder dataset from top student to "not that top" by Exam II.
+2. Calculate mean and max score for Exam I.
+3. Show student names who has top grade in each exam and overall.
+4. Adjust dataset values in a way to have three different students in output 🙂
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::

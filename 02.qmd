@@ -1,5 +1,5 @@
 ---
-title: "02 Key R programming concepts in data analysis"
+title: "02 Key R programming concepts in data analysis | Part 1"
 format: html
 engine: knitr
 ---

@@ -1,0 +1,251 @@
+---
+title: "04 Advanced R programming concepts"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Loops: Cumulative Sum**
+
+1. Create a vector `vec` with 100 elements from 0 to 10 using `runif()`.
+2. Write a `for` loop to find the cumulative sum of `vec` and store it in a vector called `cumul`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-02}
+**Functions: Basic Creation**
+
+Write a function `cube()` that takes a number and returns its cube ().
+Test it on numbers: 4, -2.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-03}
+**Functions: Arguments & Logic**
+
+Modify the `cube()` function to allow for a logical argument `show_info` (default `FALSE`).
+
+* If `show_info` is `TRUE`, the function should print: "x to the power of 3 equal to y" (where x and y are actual numbers).
+* Test on 4 with `T` and -2 with `F`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-04}
+**Lists: Creation**
+
+Create a list called `student` containing three elements:
+
+1. A **name** (character).
+2. **Scores** (numeric vector).
+3. A boolean **passed** indicating whether the average score is .
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-05}
+**Lists: Summary**
+
+Write a function `list_summary()` that takes a list and returns its element names and types (classes).
+Test it on the list `student` made previously.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-06}
+**Apply Family: lapply**
+
+1. Create a dataset `temp_cities` of city temperatures for five days in five cities.
+2. Use `lapply()` to calculate the mean temperature for each city.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-07}
+**Apply Family: sapply**
+
+1. Write a function `day_range()` that calculates the temperature range (`max` - `min`) for a vector.
+2. Use `sapply()` to apply it to `temp_cities`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-08}
+**Functions: Custom Statistics**
+
+Write a function `custom_summary()` that calculates the **mean**, **median**, and **standard deviation** of a numeric vector.
+Test it on `vec` (from Exercise 1 or a new one).
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-09}
+**Functions: Normalization**
+
+1. Create a function `normalize()` that takes a numeric vector and rescales its values between 0 and 1. Formula: .
+2. Use `sapply()` to normalize each city in `temp_cities`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-10}
+**Data Import: Read Excel**
+
+Use function `read_excel()` from the library `readxl` to load the [`urbanpop.xlsx`](class/urbanpop.xlsx) file and save it into `pop_1`.
+
+> Note: Don't forget about `setwd()` routine or use the full path to the file.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-11}
+**Data Import: Sheets**
+
+1. Use `excel_sheets()` on `urbanpop.xlsx`. Discuss your findings.
+2. Try to load the second sheet into `pop_2` using both its **number** (index) and its **name**.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-12}
+**Data Import: Bulk Loading (*)**
+
+Use `lapply` function to load data from `urbanpop.xlsx` file, from *multiple sheets*, into a list called `pop_list`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-13}
+**Data Manipulation: Merging**
+
+Merge the 3 dataframes from `pop_list` using the `cbind()` function into a single dataframe `df`.
+
+*Constraint:* Get rid of unnecessary columns "country" from the 2nd and 3rd datasets *inside* the `cbind` function when you're doing the merge.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-14}
+**Data Cleaning: Regex & Formatting**
+
+We've got data in a creepy format with "k" (thousands) and "M" (millions) instead of numbers.
+
+1. Save the second column from `df` into `vec`.
+2. Use `gsub()` to change "k" to "e3" and "M" to "e6" (scientific format).
+3. Convert them to numeric and save into `vec_num`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-15}
+**Data Cleaning: Automation**
+
+Use the logic from the previous solution to apply this cleaning to the `df` dataframe and make the columns numeric.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
