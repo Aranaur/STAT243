@@ -1,0 +1,147 @@
+---
+title: "05 Descriptive statistics | Part 1 (EDA)"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Data Import & Overview**
+
+Load [`responses.csv`](class/responses.csv) to `df` and show the summary.
+Then show all the column names and the first couple of rows, and discuss about the dataset.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-02}
+**Categorical Data: Summary**
+
+Give us a summary about Gender. How to make it useful?
+What function should be used on `df$Gender`? 
+Discuss why this variable may be useful in the research.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-03}
+**Data Interpretation & Plotting**
+
+Use `summary()` for spiders column.
+Try to interpret each result. Then make plots with `plot()` for both.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-04}
+**Subsetting by Groups**
+
+Do the summary for spiders, but for different genders. Make plots as well.
+For this you may'd like to create a subset. Discuss the result.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-06}
+**Repeating Analysis**
+
+Repeat the previous steps (summary, subsetting, and plotting) for Height and then for Weight.
+Discuss results.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-07}
+**Calculating Proportions**
+
+Calculate the proportion of respondents who love music (values 4-5).
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-08}
+**Feature Engineering: Faith**
+
+Find how religious the youth is. Check variables God and Religion, create a new variable Faith which is equal to the sum of God and Religion divided by 2, rounded to the bottom with `floor()`. Check it with summary.
+Check the percentage of unreligious (1-2) people who believe in God (4-5).
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-09}
+**Advanced Summaries & sapply**
+
+You'd like to show all mins, maxs, means and medians.
+For this you have to work with numeric columns only to avoid errors.
+Using `sapply` and function `is.numeric()` find all numeric columns. Then subset `df` with only those columns into `df_num`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-10}
+**Applying Functions to Dataframes (\*)**
+
+Continue with `df_num`. Use `sapply` with functions min/max/mean/median and `na.rm=T` and then explain the result.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::

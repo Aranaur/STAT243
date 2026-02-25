@@ -48,5 +48,15 @@
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>04 Advanced R programming concepts</span>"
     ]
+  },
+  {
+    "objectID": "05.html",
+    "href": "05.html",
+    "title": "05 Descriptive statistics | Part 1 (EDA)",
+    "section": "",
+    "text": "Exercise 5.1 Data Import & Overview\nLoad responses.csv to df and show the summary. Then show all the column names and the first couple of rows, and discuss about the dataset.\n\n# Your code here\n\n\n\n\nExercise 5.2 Categorical Data: Summary\nGive us a summary about Gender. How to make it useful? What function should be used on df$Gender? Discuss why this variable may be useful in the research.\n\n# Your code here\n\n\n\n\nExercise 5.3 Data Interpretation & Plotting\nUse summary() for spiders column. Try to interpret each result. Then make plots with plot() for both.\n\n# Your code here\n\n\n\n\nExercise 5.4 Subsetting by Groups\nDo the summary for spiders, but for different genders. Make plots as well. For this you may’d like to create a subset. Discuss the result.\n\n# Your code here\n\n\n\n\nExercise 5.5 Repeating Analysis\nRepeat the previous steps (summary, subsetting, and plotting) for Height and then for Weight. Discuss results.\n\n# Your code here\n\n\n\n\nExercise 5.6 Calculating Proportions\nCalculate the proportion of respondents who love music (values 4-5).\n\n# Your code here\n\n\n\n\nExercise 5.7 Feature Engineering: Faith\nFind how religious the youth is. Check variables God and Religion, create a new variable Faith which is equal to the sum of God and Religion divided by 2, rounded to the bottom with floor(). Check it with summary. Check the percentage of unreligious (1-2) people who believe in God (4-5).\n\n# Your code here\n\n\n\n\nExercise 5.8 Advanced Summaries & sapply\nYou’d like to show all mins, maxs, means and medians. For this you have to work with numeric columns only to avoid errors. Using sapply and function is.numeric() find all numeric columns. Then subset df with only those columns into df_num.\n\n# Your code here\n\n\n\n\nExercise 5.9 Applying Functions to Dataframes (*)\nContinue with df_num. Use sapply with functions min/max/mean/median and na.rm=T and then explain the result.\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>05 Descriptive statistics | Part 1 (EDA)</span>"
+    ]
   }
 ]
