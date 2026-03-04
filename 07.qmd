@@ -1,0 +1,304 @@
+---
+title: "07 Data Manipulation with dplyr"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Data Import & Overview**
+
+* Load necessary library `library(tidyverse)`.
+* Load data from [`counties.csv`](class/counties.csv) using function `read_csv()` instead of the `read.csv()`.
+* Show summary, first few rows and column names. 
+* Discuss what is this dataset about.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-02}
+**Pipe Notation**
+
+Rewrite in a pipe notation following function:
+
+
+`sort(unique(counties$state),decreasing=T)` 
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-03}
+**Selecting Columns**
+
+Select only the columns `state`, `county`, and `population` from counties using `select()` function.
+Write into `counties_selected`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-04}
+**Excluding Columns**
+
+Select all columns except `population` and `region` from counties.
+Use "-".
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-05}
+**Arranging Data**
+
+Arrange counties in descending order based on `private_work` percentage.
+Using `arrange()` and `desc()` functions.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-06}
+**Filtering Data**
+
+Filter counties where `metro` is `Metro` and population is greater than 500,000 using `filter()`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-07}
+**Creating Columns (Mutate)**
+
+Create a new column `total_workforce` as the sum of `private_work` and `public_work` percentages.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-08}
+**Multiple Filters**
+
+Filter counties that belong to the `South` region and have a population under 50000.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-09}
+**Calculating New Variables**
+
+Create a new variable `self_employed_pop` as the number of self-employed individuals.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-10}
+**Finding Top Observations**
+
+Find the county with the highest percentage of public workers.
+You may use `head()` to take only top observation.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-11}
+**Filter and Sort**
+
+Filter counties where more than 60% of the population is male and sort by population descending.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-12}
+**Complex Pipeline**
+
+For counties in a single pipe select variables `state`, `county`, `region`, `population`, `men`, `women`, `citizens`.
+Then filter that there are more men than women and number of citizens is more than 10000 and the region is West or NorthEast.
+Then arrange by citizens in descending order.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-13}
+**Subsetting and Mutating Pipeline**
+
+From counties select `state`, `county`, `population`, `men`, `women`, `self_employed`, add the proportion of men called `proportion_men`, take only counties with Proportion of men bigger than 60%, sort by `ProportionMen` in descending order and save into `counties_tmp`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-14}
+**Modifying Existing Columns**
+
+In `counties_tmp` remake `proportion_men` not as %, but as decimal with a function `mutate()`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-15}
+**Debugging Code**
+
+Why the following doesn't work? 
+
+```{r}
+#| eval: false
+counties %>%
+  select(state, county, population, men, women, self_employed)  %>%
+  transmute(proportion_men=men/population*100) %>%
+  filter(proportion_men>60) %>%
+  arrange(desc(self_employed))
+```
+
+:::
+
+---
+
+::: {#exr-16}
+**Using Transmute**
+
+Use `transmute` over counties in a way to leave `state`, `county`, `population` and create `proportion_citizens`.
+Save into `counties_tmp`.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-17}
+**Proportions and Filtering**
+
+Compute the proportion of self-employed individuals and filter only counties where it's above 10%, then sort by proportion descending.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-18}
+**End-to-end Pipeline**
+
+Create a pipeline that selects relevant columns, filters counties with at least 50000 population, creates a new variable for the male-to-female ratio, and sorts by this ratio.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-19}
+**Advanced Pipeline**
+
+Select `state`, `county`, `population`, `private_work`, `public_work`, `self_employed`, compute into total_employment the total percentage of employment by summing up private, public, and self-employment percentages, then filter only counties where it's below 98% from Texas and arrange by descending order.
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::

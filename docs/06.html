@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>03 Key R programming concepts in data analysis | Part 2 – STAT243: Data Analysis and Visualization in R</title>
+<title>06 Data Cleaning and Correlation Analysis – STAT243: Data Analysis and Visualization in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04.html" rel="next">
-<link href="./02.html" rel="prev">
+<link href="./07.html" rel="next">
+<link href="./05.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03.html"><span class="chapter-title">03 Key R programming concepts in data analysis | Part 2</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">03 Key R programming concepts in data analysis | Part 2</span></a>
+  <a href="./03.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">03 Key R programming concepts in data analysis | Part 2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a>
+  <a href="./06.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">03 Key R programming concepts in data analysis | Part 2</span></h1>
+<h1 class="title"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></h1>
 </div>
 
 
@@ -215,199 +215,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="exr-01" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.1</strong></span> <strong>Factors: Creation</strong></p>
-<p>Create a vector <code>vec</code> for outfit ratings: “Casual”, “Drip”, “Drip”, “Casual”, “Drip”, “Slay”, “Drip”, “Slay”, “Casual”, “Drip”, “Casual”, “Slay”.</p>
-<p>Convert it into a factor <code>fact</code> with levels “Casual”, “Drip”, “Slay”.</p>
+<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> <strong>Outlier Detection: IQR Rule</strong></p>
+<p>Load the <a href="class/responses.csv"><code>responses</code></a> dataset into <code>df</code>. Use the <strong>IQR Rule</strong> to identify potential outliers for <code>Weight</code> and <code>Height</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not rewrite or modify the original data yet. You may save <code>df$Weight</code> into a variable <code>wght</code> and <code>df$Height</code> into <code>hght</code> for convenience. Discuss the results of the detection.</p>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Casual"</span>, <span class="st">"Drip"</span>, <span class="st">"Drip"</span>, <span class="st">"Casual"</span>, <span class="st">"Drip"</span>, <span class="st">"Slay"</span>, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Drip"</span>, <span class="st">"Slay"</span>, <span class="st">"Casual"</span>, <span class="st">"Drip"</span>, <span class="st">"Casual"</span>, <span class="st">"Slay"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-02" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.2</strong></span> <strong>Factors: Renaming Levels</strong></p>
-<p>Replace the levels “Casual”, “Drip”, “Slay” with “C”, “D”, “S” in the factor you created previously.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-03" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.3</strong></span> <strong>Factors: Adding Levels (*)</strong></p>
-<p>Add a new factor level “Cringe” to the factor you created previously and add two elements “Cringe” in the end.</p>
-<p><em>Hint:</em> For this, you need to recreate <code>fact</code> as character, combine with 2 “Cringe”s and put in levels the levels of previously created fact. Do the addition of elements in a single line of code.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-04" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.4</strong></span> <strong>Factors: Specific Rename</strong></p>
-<p>Rename only “Cringe” level of the factor to “Cr”.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-05" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.5</strong></span> <strong>Factors: Summary</strong></p>
-<p>Generate a summary of the factor you created previously.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-06" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.6</strong></span> <strong>Simulation: Coin Toss</strong></p>
-<ol type="1">
-<li>Simulate a coin toss (1 for heads, 0 for tails).</li>
-<li>Use <code>ifelse()</code> to assign “Win” for heads and “Lose” for tails in a vector of 1000 random coin tosses.</li>
-<li>Make it a factor and then show the summary.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-07" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.7</strong></span> <strong>Data Frames: Creation</strong></p>
-<p>Create a data frame <code>city_ua</code> with the following vectors:</p>
-<ul>
-<li><strong>City</strong>: “Kyiv”, “Lviv”, “Odesa”, “Kharkiv”, “Dnipro”</li>
-<li><strong>Population</strong> (millions): 2.9, 0.7, 1.0, 1.4, 1.0</li>
-<li><strong>Subway</strong>: TRUE, FALSE, FALSE, TRUE, TRUE</li>
-</ul>
-<p>Extract the Population of “Odesa” in a matrix style.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-08" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.8</strong></span> <strong>Data Frames: Filtering</strong></p>
-<p>Extract all the rows where the population is greater than 1 million. Do it both in <code>data.frame</code> style and in matrix style.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-09" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.9</strong></span> <strong>Data Frames: Logical Subset</strong></p>
-<p>Create a subset of cities that do not have subway systems. Do it in both data frame style and matrix style.</p>
-<p><em>Challenge:</em> To make things funnier, in your line of code don’t use <code>TRUE</code>, <code>T</code>, <code>FALSE</code>, <code>F</code> :)</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-10" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.10</strong></span> **Data Frames: New Column (*)**</p>
-<p>Add a new column to the data frame indicating whether the city is located in Eastern Ukraine (<code>TRUE</code> for “Kharkiv” and “Dnipro”, <code>FALSE</code> otherwise).</p>
-<p>Try the solution without and with the operator <code>%in%</code> to check how it works.</p>
-<blockquote class="blockquote">
-<p>Example of how <code>%in%</code> works: <code>vec %in% c("Cringe","Slay")</code> will give a logical vector indicating elements that are either “Cringe” or “Slay”.</p>
-</blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-11" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.11</strong></span> <strong>Data Frames: Calculation</strong></p>
-<p>Calculate the mean population of cities that have a subway.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-12" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.12</strong></span> <strong>Data Analysis: Loading Data</strong></p>
-<p>Load the <a href="class/diabetes.csv"><code>diabetes.csv</code></a> into <code>diab</code> and print the summary of the data. Discuss.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-13" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.13</strong></span> <strong>Data Analysis: Basic Operations</strong></p>
-<p>Do the following actions with a line of code for each:</p>
-<ol type="1">
-<li>Find the mean of the BMI column in the dataset.</li>
-<li>Select all rows where the Age is greater than 50.</li>
-<li>Select all patients with Age more than 50 and diabetes.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-14" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.14</strong></span> <strong>Data Analysis: Conditional Factor</strong></p>
-<p>Create a new factor column <code>bmi_level</code> in the dataset that indicates whether the BMI is greater than 25 (label as “High BMI” or “Normal BMI”).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-15" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.15</strong></span> <strong>Data Analysis: Group Comparison</strong></p>
-<p>In the diabetes dataset, compare the average BMI of those who have diabetes and those who don’t.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-16" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.16</strong></span> <strong>Data Analysis: Sorting</strong></p>
-<p>Create sorted diabetes by increasing BMI. Check average Outcome in the first half and in the second half of the dataset. Explain the result.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<hr>
-<div id="exr-17" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.17</strong></span> <strong>Control Flow: While Loop</strong></p>
-<p>Create a while loop where <code>i</code> starts at 26. Print “i is not divisible by 11” (where i is a current number) in each iteration and stop if the square is divisible by 11. After the loop print “i is divisible by 11” using final “i”.</p>
+<p><span class="theorem-title"><strong>Exercise 6.2</strong></span> <strong>Missing Values: Mean Imputation</strong></p>
+<p>For the <code>wght</code> variable (Weight), fill all <code>NA</code> values with the <strong>mean</strong> value.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Tip
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You may want to use <code>paste0()</code> function in this task.</p>
-</div>
+<p>You might want to use the <code>round()</code> function so the mean becomes an integer, matching the style of other observations.</p>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-18" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.18</strong></span> <strong>Data Frames: Student Grades</strong></p>
-<p>Create your own dataframe with students that attend these seminars. You need at least 7 students.</p>
-<p>Then you need columns:</p>
-<ul>
-<li><strong>Name</strong> (up to you)</li>
-<li><strong>Exam I score</strong>, <strong>Exam II score</strong> (put some grades from 0 to 20)</li>
-<li>Column <strong>“passed”</strong>, factor with values “y” or “n”. Fill it with “y” if total grade is &gt;=30, “n” otherwise.</li>
-</ul>
-<p>Tasks:</p>
+<div id="exr-03" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.3</strong></span> <strong>Missing Values: Group-based Imputation</strong></p>
 <ol type="1">
-<li>Reorder dataset from top student to “not that top” by Exam II.</li>
-<li>Calculate mean and max score for Exam I.</li>
-<li>Show student names who has top grade in each exam and overall.</li>
-<li>Adjust dataset values in a way to have three different students in output 🙂</li>
+<li>Convert the <code>Gender</code> column into a <strong>factor</strong>.</li>
+<li>Repeat the <code>NA</code> filling process for <code>hght</code> (Height), but this time do it <strong>according to the gender</strong> (use the mean height of males for missing male values, and vice versa).</li>
+<li>Check if there is anything wrong or unusual in the process.</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-04" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.4</strong></span> <strong>Handling Anomalies: Weight</strong></p>
+<p>Find anomalies in <code>wght</code> using the <strong>IQR Rule</strong>. This time, rewrite (replace) the identified weight anomalies with the overall mean.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-05" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.5</strong></span> <strong>Handling Anomalies: Height</strong></p>
+<p>Find anomalies in <code>hght</code> using the <strong>IQR Rule</strong>. Rewrite these anomalies with the <strong>mean of the corresponding gender</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-06" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.6</strong></span> <strong>Data Cleaning: Listwise Deletion</strong></p>
+<p>Use the <code>na.omit()</code> function on the entire dataframe.</p>
+<ul>
+<li>How many observations are left?</li>
+<li>How should we interpret this result in the context of data loss?</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-07" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.7</strong></span> <strong>Correlation: Physical Attributes</strong></p>
+<p>Check the correlation between <code>df$Height</code> and <code>df$Weight</code>.</p>
+<ul>
+<li>Does the result look correct?</li>
+<li>If not, check the correlation between the cleaned variables <code>hght</code> and <code>wght</code> and discuss the difference.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-08" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.8</strong></span> <strong>Correlation: Beliefs</strong></p>
+<p>Check the correlation between the variables <code>God</code> and <code>Religion</code>.</p>
+<ul>
+<li>To do this, you first need to handle <code>NA</code> values (either fill them or remove them).</li>
+<li>For this task, let’s try removing them.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-09" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.9</strong></span> <strong>Correlation Matrix</strong></p>
+<p>Create a correlation matrix for all variables in the dataset.</p>
+<ul>
+<li><em>Step 1:</em> Filter the dataframe to include <strong>only numeric</strong> variables.</li>
+<li><em>Step 2:</em> Use <code>na.omit()</code> to handle missing values.</li>
+<li><em>Step 3:</em> Save the result into a matrix called <code>cormat</code>.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-10" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.10</strong></span> <strong>Visualization: Corrplot</strong></p>
+<p>Install and load the <code>corrplot</code> library. Use the <code>corrplot()</code> function to visualize your <code>cormat</code>. Discuss the patterns you observe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-11" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.11</strong></span> <strong>Matrix Operations: Finding Extremes</strong></p>
+<p>Find the <strong>minimum value</strong> in the <code>cormat</code> (the strongest negative correlation).</p>
+<ul>
+<li>Use the <code>which()</code> function with the parameter <code>arr.ind = TRUE</code> to find the exact row and column indices where the correlation equals the minimum value of the matrix.</li>
+<li>Discuss what these two variables represent.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
@@ -816,13 +758,13 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02.html" class="pagination-link" aria-label="02 Key R programming concepts in data analysis | Part 1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">02 Key R programming concepts in data analysis | Part 1</span></span>
+      <a href="./05.html" class="pagination-link" aria-label="05 Descriptive statistics | Part 1 (EDA)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">05 Descriptive statistics | Part 1 (EDA)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04.html" class="pagination-link" aria-label="04 Advanced R programming concepts">
-        <span class="nav-page-text"><span class="chapter-title">04 Advanced R programming concepts</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07.html" class="pagination-link" aria-label="07 Data Manipulation with dplyr">
+        <span class="nav-page-text"><span class="chapter-title">07 Data Manipulation with dplyr</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

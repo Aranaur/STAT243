@@ -1,0 +1,206 @@
+---
+title: "06 Data Cleaning and Correlation Analysis"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Outlier Detection: IQR Rule**
+
+Load the [`responses`](class/responses.csv) dataset into `df`. Use the **IQR Rule** to identify potential outliers for `Weight` and `Height`. 
+
+::: {.callout-note}
+Do not rewrite or modify the original data yet. You may save `df$Weight` into a variable `wght` and `df$Height` into `hght` for convenience. Discuss the results of the detection.
+:::
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-02}
+**Missing Values: Mean Imputation**
+
+For the `wght` variable (Weight), fill all `NA` values with the **mean** value.
+
+::: {.callout-tip}
+You might want to use the `round()` function so the mean becomes an integer, matching the style of other observations. 
+:::
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-03}
+**Missing Values: Group-based Imputation**
+
+1. Convert the `Gender` column into a **factor**.
+2. Repeat the `NA` filling process for `hght` (Height), but this time do it **according to the gender** (use the mean height of males for missing male values, and vice versa).
+3. Check if there is anything wrong or unusual in the process. 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-04}
+**Handling Anomalies: Weight**
+
+Find anomalies in `wght` using the **IQR Rule**. This time, rewrite (replace) the identified weight anomalies with the overall mean. 
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-05}
+**Handling Anomalies: Height**
+
+Find anomalies in `hght` using the **IQR Rule**. Rewrite these anomalies with the **mean of the corresponding gender**. 
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-06}
+**Data Cleaning: Listwise Deletion**
+
+Use the `na.omit()` function on the entire dataframe.
+
+* How many observations are left?
+* How should we interpret this result in the context of data loss? 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-07}
+**Correlation: Physical Attributes**
+
+Check the correlation between `df$Height` and `df$Weight`.
+
+* Does the result look correct?
+* If not, check the correlation between the cleaned variables `hght` and `wght` and discuss the difference. 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-08}
+**Correlation: Beliefs**
+
+Check the correlation between the variables `God` and `Religion`.
+
+* To do this, you first need to handle `NA` values (either fill them or remove them).
+* For this task, let's try removing them. 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-09}
+**Correlation Matrix**
+
+Create a correlation matrix for all variables in the dataset.
+
+* *Step 1:* Filter the dataframe to include **only numeric** variables.
+* *Step 2:* Use `na.omit()` to handle missing values.
+* *Step 3:* Save the result into a matrix called `cormat`. 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-10}
+**Visualization: Corrplot**
+
+Install and load the `corrplot` library. Use the `corrplot()` function to visualize your `cormat`. Discuss the patterns you observe. 
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
+
+---
+
+::: {#exr-11}
+**Matrix Operations: Finding Extremes**
+
+Find the **minimum value** in the `cormat` (the strongest negative correlation).
+
+* Use the `which()` function with the parameter `arr.ind = TRUE` to find the exact row and column indices where the correlation equals the minimum value of the matrix.
+* Discuss what these two variables represent. 
+
+
+
+```{r}
+#| eval: false
+# Your code here
+
+```
+
+:::
