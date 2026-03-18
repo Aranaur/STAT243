@@ -1,0 +1,153 @@
+---
+title: "09 Tidying Data and Joins (tidyr & dplyr)"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Pivoting Wider: Basic**
+
+Convert the counties dataset into a wide format where the columns are `county`, `state`, `metro` or `non-metro` (after pivoting) and values are `population`. 
+Do it with `pivot_wider()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Pivoting Wider: Aggregation**
+
+Convert the counties dataset into a wide format where for each state the population is calculated by metro and non-metro. 
+So we'll have columns `state`, `metro`, `nonmetro` and 50 rows for each state.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Pivoting Wider: States as Columns**
+
+Convert the counties dataset into a wide format where each state becomes a column and the values are the total population in that state. 
+Save into `counties_pop_wide`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Pivoting Longer**
+
+Convert the wide-format data back into a long format where the state names become a column again from `counties_pop_wide`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Summary and Pivoting**
+
+Create a summary table showing the average income in each metro and non-metro area per region, then pivot it wider by metro and save into `counties_reg_metro`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Joining Data: left_join**
+
+Create another table by region for average income calculated correctly, save it into `counties_reg_tot` and connect it to `counties_reg_metro` with the `left_join()` and resave the result as the `counties_reg_tot`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Complex Pipeline: Population & Income (Part 1)**
+
+Create a total population by region and metro, make it wider to have metro and nonmetro columns, save into `counties_reg_metro_pop`. 
+Then do the same but just by region and save into `counties_metro_pop`. 
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Complex Pipeline: Population & Income (Part 2)**
+
+To `counties_reg_metro_pop` join the `counties_metro_pop` and calculate the share of metro population in total population, same for nonmetro. 
+Then join the `counties_reg_tot` by region and give suffixes `_perc` and `_inc` for percentages and income.
+At the last stage, compare `mean_inc` with `mean_inc_new`, which is calculated as mean income for metro and non-metro multiplied by the percentage of population in metro and non-metro area. Are they the same? Why?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Joining External Data**
+
+Perform a left join between the `counties` dataset and a dataset containing state abbreviations (e.g., `state.abb` and `state.name` from base R), ensuring that no counties are lost in the process.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-10}
+**Cross Tabulation & Pivoting**
+
+Create a table with percentage of white, black, and other people (columns) and metro / non-metro county (rows).
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**Calculations and Joins**
+
+Find the population density for each state and the average income for each state, then join them.
+Check the correlation between two.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::

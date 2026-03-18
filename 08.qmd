@@ -1,0 +1,221 @@
+---
+title: "08 Data Aggregation and Grouping with dplyr"
+format: html
+engine: knitr
+---
+
+::: {.callout-important}
+* Load necessary library `library(tidyverse)`.
+* Load data from [`counties.csv`](class/counties.csv).
+:::
+
+::: {#exr-01}
+**Counting Categories**
+
+Count the number of counties in each metro/non-metro category.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Conditional Counting**
+
+Count the number of counties in each state where the average household income is above 60,000.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Weighted Counting**
+
+Count the number of counties in each state, weighted by the number of employed people, and sort in descending order.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Multi-group Counting**
+
+Count the number of metro and non-metro counties per state.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Average Percentage (Two Ways)**
+
+Find the average percentage of white people throughout all counties.
+Propose 2 approaches, one with `mean()` and another with `summarize()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Conditional Average**
+
+Find the average percentage of white people throughout all counties, which have income more than 70,000.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Finding the Maximum**
+
+Find the state with the maximum average household income.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Finding the Minimum Amount**
+
+Find the county with the lowest amount of people working in the public sector.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Summarizing Totals**
+
+Compute the total number of unemployed people in each state and sort in descending order.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-10}
+**Mean and Median**
+
+Find the average and median number of people per county working in private companies.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**Calculating Percentages**
+
+Calculate the percentage of the population that works in construction per state.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-12}
+**Grouped Maximum**
+
+Find the state with the highest average unemployment rate among metro counties.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-13}
+**Multiple Metrics**
+
+Compute the total number of counties per state and the average number of people walking to work per state.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-14}
+**Highest Proportion**
+
+Find the state with the highest proportion of people working in self-employment.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-15}
+**Proportion of Citizens**
+
+Compute the proportion of people in each state who are U.S. citizens.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-16}
+**Complex Pipeline**
+
+For the `counties` dataset do the following:
+
+1. Select variables `state`, `population`, `white`, `black`, `hispanic`, `native`, `asian`.
+2. Filter for counties where there are more than 20% of black persons, more than 10% of hispanic persons, and the population is bigger than 150,000.
+3. Show the total amount (sum) of black, hispanic, native, and asian people by state.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
