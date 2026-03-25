@@ -7,27 +7,59 @@ engine: knitr
 ::: {#exr-01}
 **Data Loading and Joining**
 
-Load `ImdbTitleBasics` and `ImdbTitleRatings` into `imdb_1` and `imdb_2`. Check column names and first few rows. 
+Load [`ImdbTitleBasics`](https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link) and [`ImdbTitleRatings`](https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link) into `imdb_1` and `imdb_2`. Check column names and first few rows. 
 Join `imdb_1` and `imdb_2` into `imdb`, and remove `imdb_1` and `imdb_2`.
 
 ```{r}
 #| eval: false
+library(tidyverse)
 library(googledrive)
 
-# Скачуємо файли з Google Диска в робочу папку (id беремо з ваших посилань)
-drive_download(as_id("1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT"), 
-               path = "ImdbTitleBasics.csv", 
-               overwrite = TRUE)
+# 1. Specify the full URLs
+link_1 <- "https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link"
+link_2 <- "https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"
 
-drive_download(as_id("1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG"), 
-               path = "ImdbTitleRatings.csv", 
-               overwrite = TRUE)
+# (Optional) If the files are publicly accessible via a link, this command 
+# will allow you to download them WITHOUT logging in (R will not open a browser window asking you to log in)
+drive_deauth()
 
-# Тепер читаємо їх як звичайні локальні файли
+# 2. Upload the files. as_id() will automatically retrieve the required ID from the link
+drive_download(as_id(link_1), path = "ImdbTitleBasics.csv", overwrite = TRUE)
+drive_download(as_id(link_2), path = "ImdbTitleRatings.csv", overwrite = TRUE)
+
+# 3. Reading local files
 imdb_1 <- read_csv("ImdbTitleBasics.csv")
 imdb_2 <- read_csv("ImdbTitleRatings.csv")
 ```
 :::
+
+::: {.callout-tip collapse="true"}
+## Or alternativly
+```{r}
+#| eval: false
+library(tidyverse)
+library(googledrive)
+
+drive_deauth()
+
+# Creating vectors with links and filenames
+links <- c(
+  "https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link",
+  "https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"
+)
+
+filenames <- c("ImdbTitleBasics.csv", "ImdbTitleRatings.csv")
+
+# We automatically iterate through both vectors and download each file
+walk2(links, filenames, ~drive_download(as_id(.x), path = .y, overwrite = TRUE))
+
+# Reading Files
+imdb_1 <- read_csv(filenames[1])
+imdb_2 <- read_csv(filenames[2])
+```
+:::
+
+
 
 ---
 
