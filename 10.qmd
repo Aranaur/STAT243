@@ -1,0 +1,125 @@
+---
+title: "10 Data Manipulation with IMDb Dataset"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Data Loading and Joining**
+
+Load `ImdbTitleBasics` and `ImdbTitleRatings` into `imdb_1` and `imdb_2`. Check column names and first few rows. 
+Join `imdb_1` and `imdb_2` into `imdb`, and remove `imdb_1` and `imdb_2`.
+
+```{r}
+#| eval: false
+library(googledrive)
+
+# Скачуємо файли з Google Диска в робочу папку (id беремо з ваших посилань)
+drive_download(as_id("1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT"), 
+               path = "ImdbTitleBasics.csv", 
+               overwrite = TRUE)
+
+drive_download(as_id("1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG"), 
+               path = "ImdbTitleRatings.csv", 
+               overwrite = TRUE)
+
+# Тепер читаємо їх як звичайні локальні файли
+imdb_1 <- read_csv("ImdbTitleBasics.csv")
+imdb_2 <- read_csv("ImdbTitleRatings.csv")
+```
+:::
+
+---
+
+::: {#exr-02}
+**Data Cleaning**
+
+Clean the `imdb` a little bit. First check the unique genres in the dataset, discuss. Then remove all the movies where the "Adult" in genres (use `str_detect()` for it) and also remake `startYear`, `endYear` and `runtimeMinutes` as numeric.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Top Movies by Runtime**
+
+Show top-2 movies by the runtime in each genre, checking only titles with 1 genre. 
+*Tip:* If there are 2+ genres, what symbol will definitely be in genres?
+*Tip 2:* You may need function `slice_head()` to take 2 titles from each group.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Sorting by Decades**
+
+Sort in descending order title average scores for each decade, taking only titles with 1k+ votes.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Counting by Format**
+
+For movies and tvseries make a table 1x2 with amount of movies and TV series.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Most Voted per Year**
+
+Find the most voted title for each year.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Rating Distributions**
+
+Compare the rating distribution of movies and TV series. Calculate Mean, median and standard deviation.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Separating Rows by Genres**
+
+Use `separate_rows()` on genres with `sep=","` to divide titles with multiple genres into multiple rows where each observation may appear multiple times, but with different genres. 
+Check the amount of observations in this case. Compare with the amount of observations of just `imdb` and the case where you leave only titles with a single genre. 
+Now check unique genres for `imdb` with separated rows and compare.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::

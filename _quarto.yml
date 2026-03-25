@@ -19,6 +19,8 @@ book:
     - 07.qmd
     - 08.qmd
     - 09.qmd
+    - 10.qmd
+    
 
 format:
   html:
