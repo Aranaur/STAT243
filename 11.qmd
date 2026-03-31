@@ -1,0 +1,178 @@
+---
+title: "11 Data Visualization: Scatter Plots, Histograms, and Bar Charts"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Scatter plot with log GDP and continent colors**
+
+Create a scatter plot of logarithmized GDP per capita vs Life Expectancy, colored by continent. Use point size 2.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(gapminder)
+
+gpmind <- gapminder
+
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Scatter plot with population-based size**
+
+Create a scatter plot of log GDP per capita vs Life Expectancy with color by continent, size based on population, and transparency 0.6.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Scatter plot for 2007 with minimal theme**
+
+Create a scatter plot with log GDP per capita and Life Expectancy colored by continent for year 2007 only. Use point size 5 and add `theme_minimal()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Scatter plot with smooth trend lines**
+
+Create a scatter plot with smooth trend lines per continent. Use both `geom_point()` (alpha=0.6, size=3) and `geom_smooth(se=F)` with line width 3.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Scatter plot with country labels**
+
+Create a scatter plot with country labels instead of dots. Use `geom_text()` with log GDP per capita on x-axis and Life Expectancy on y-axis, colored by continent.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Annotated scatter plot with year labels**
+
+Calculate average life expectancy and average GDP per capita by year and continent. Create a scatter plot with year labels using a combination of `geom_point()` and `geom_text(vjust=-0.5)`. Add `theme_minimal()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Histogram of Life Expectancy in 2007**
+
+Create a histogram of Life Expectancy in 2007 with `binwidth=3`, filled with `"lightblue3"` and black border.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Histogram filled by continent**
+
+Create a histogram of Life Expectancy filled by continent with `binwidth=1`, black border, and transparency 0.7.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Density plot by continent**
+
+Create a density plot of Life Expectancy in 2007 by continent with transparency 0.3.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-10}
+**Bar chart of countries per continent**
+
+Create a bar chart of the number of countries per continent in 2007. Try to do it using both `geom_col()` and `geom_bar()`. In which case did you succeed?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**Bar chart: weighted vs simple mean**
+
+Create a bar chart of average life expectancy by continent in 2007, comparing weighted average (`sum(lifeExp*pop)/sum(pop)`) and simple mean. Use `pivot_longer()` and `position = "dodge"`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-12}
+**Median GDP bar chart**
+
+Create a bar chart of median GDP per capita by continent in 2007, filled with `"lightblue3"`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-13}
+**Grouped bar chart by year**
+
+Create a bar chart of maximum life expectancy by continent for years 1997, 2002, and 2007. Use `position="dodge"` and color by year (as factor).
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>06 Data Cleaning and Correlation Analysis – STAT243: Data Analysis and Visualization in R</title>
+<title>11 Data Visualization: Scatter Plots, Histograms, and Bar Charts – STAT243: Data Analysis and Visualization in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07.html" rel="next">
-<link href="./05.html" rel="prev">
+<link href="./12.html" rel="next">
+<link href="./10.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a>
+  <a href="./06.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></a>
+  <a href="./11.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">06 Data Cleaning and Correlation Analysis</span></h1>
+<h1 class="title"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></h1>
 </div>
 
 
@@ -240,141 +240,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="exr-01" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> <strong>Outlier Detection: IQR Rule</strong></p>
-<p>Load the <a href="class/responses.csv"><code>responses</code></a> dataset into <code>df</code>. Use the <strong>IQR Rule</strong> to identify potential outliers for <code>Weight</code> and <code>Height</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do not rewrite or modify the original data yet. You may save <code>df$Weight</code> into a variable <code>wght</code> and <code>df$Height</code> into <code>hght</code> for convenience. Discuss the results of the detection.</p>
-</div>
-</div>
+<p><span class="theorem-title"><strong>Exercise 11.1</strong></span> <strong>Scatter plot with log GDP and continent colors</strong></p>
+<p>Create a scatter plot of logarithmized GDP per capita vs Life Expectancy, colored by continent. Use point size 2.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gpmind <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-02" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.2</strong></span> <strong>Missing Values: Mean Imputation</strong></p>
-<p>For the <code>wght</code> variable (Weight), fill all <code>NA</code> values with the <strong>mean</strong> value.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You might want to use the <code>round()</code> function so the mean becomes an integer, matching the style of other observations.</p>
-</div>
-</div>
+<p><span class="theorem-title"><strong>Exercise 11.2</strong></span> <strong>Scatter plot with population-based size</strong></p>
+<p>Create a scatter plot of log GDP per capita vs Life Expectancy with color by continent, size based on population, and transparency 0.6.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-03" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.3</strong></span> <strong>Missing Values: Group-based Imputation</strong></p>
-<ol type="1">
-<li>Convert the <code>Gender</code> column into a <strong>factor</strong>.</li>
-<li>Repeat the <code>NA</code> filling process for <code>hght</code> (Height), but this time do it <strong>according to the gender</strong> (use the mean height of males for missing male values, and vice versa).</li>
-<li>Check if there is anything wrong or unusual in the process.</li>
-</ol>
+<p><span class="theorem-title"><strong>Exercise 11.3</strong></span> <strong>Scatter plot for 2007 with minimal theme</strong></p>
+<p>Create a scatter plot with log GDP per capita and Life Expectancy colored by continent for year 2007 only. Use point size 5 and add <code>theme_minimal()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-04" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.4</strong></span> <strong>Handling Anomalies: Weight</strong></p>
-<p>Find anomalies in <code>wght</code> using the <strong>IQR Rule</strong>. This time, rewrite (replace) the identified weight anomalies with the overall mean.</p>
+<p><span class="theorem-title"><strong>Exercise 11.4</strong></span> <strong>Scatter plot with smooth trend lines</strong></p>
+<p>Create a scatter plot with smooth trend lines per continent. Use both <code>geom_point()</code> (alpha=0.6, size=3) and <code>geom_smooth(se=F)</code> with line width 3.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-05" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.5</strong></span> <strong>Handling Anomalies: Height</strong></p>
-<p>Find anomalies in <code>hght</code> using the <strong>IQR Rule</strong>. Rewrite these anomalies with the <strong>mean of the corresponding gender</strong>.</p>
+<p><span class="theorem-title"><strong>Exercise 11.5</strong></span> <strong>Scatter plot with country labels</strong></p>
+<p>Create a scatter plot with country labels instead of dots. Use <code>geom_text()</code> with log GDP per capita on x-axis and Life Expectancy on y-axis, colored by continent.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-06" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.6</strong></span> <strong>Data Cleaning: Listwise Deletion</strong></p>
-<p>Use the <code>na.omit()</code> function on the entire dataframe.</p>
-<ul>
-<li>How many observations are left?</li>
-<li>How should we interpret this result in the context of data loss?</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 11.6</strong></span> <strong>Annotated scatter plot with year labels</strong></p>
+<p>Calculate average life expectancy and average GDP per capita by year and continent. Create a scatter plot with year labels using a combination of <code>geom_point()</code> and <code>geom_text(vjust=-0.5)</code>. Add <code>theme_minimal()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-07" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.7</strong></span> <strong>Correlation: Physical Attributes</strong></p>
-<p>Check the correlation between <code>df$Height</code> and <code>df$Weight</code>.</p>
-<ul>
-<li>Does the result look correct?</li>
-<li>If not, check the correlation between the cleaned variables <code>hght</code> and <code>wght</code> and discuss the difference.</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 11.7</strong></span> <strong>Histogram of Life Expectancy in 2007</strong></p>
+<p>Create a histogram of Life Expectancy in 2007 with <code>binwidth=3</code>, filled with <code>"lightblue3"</code> and black border.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-08" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.8</strong></span> <strong>Correlation: Beliefs</strong></p>
-<p>Check the correlation between the variables <code>God</code> and <code>Religion</code>.</p>
-<ul>
-<li>To do this, you first need to handle <code>NA</code> values (either fill them or remove them).</li>
-<li>For this task, let’s try removing them.</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 11.8</strong></span> <strong>Histogram filled by continent</strong></p>
+<p>Create a histogram of Life Expectancy filled by continent with <code>binwidth=1</code>, black border, and transparency 0.7.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-09" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.9</strong></span> <strong>Correlation Matrix</strong></p>
-<p>Create a correlation matrix for all variables in the dataset.</p>
-<ul>
-<li><em>Step 1:</em> Filter the dataframe to include <strong>only numeric</strong> variables.</li>
-<li><em>Step 2:</em> Use <code>na.omit()</code> to handle missing values.</li>
-<li><em>Step 3:</em> Save the result into a matrix called <code>cormat</code>.</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 11.9</strong></span> <strong>Density plot by continent</strong></p>
+<p>Create a density plot of Life Expectancy in 2007 by continent with transparency 0.3.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-10" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.10</strong></span> <strong>Visualization: Corrplot</strong></p>
-<p>Install and load the <code>corrplot</code> library. Use the <code>corrplot()</code> function to visualize your <code>cormat</code>. Discuss the patterns you observe.</p>
+<p><span class="theorem-title"><strong>Exercise 11.10</strong></span> <strong>Bar chart of countries per continent</strong></p>
+<p>Create a bar chart of the number of countries per continent in 2007. Try to do it using both <code>geom_col()</code> and <code>geom_bar()</code>. In which case did you succeed?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-11" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.11</strong></span> <strong>Matrix Operations: Finding Extremes</strong></p>
-<p>Find the <strong>minimum value</strong> in the <code>cormat</code> (the strongest negative correlation).</p>
-<ul>
-<li>Use the <code>which()</code> function with the parameter <code>arr.ind = TRUE</code> to find the exact row and column indices where the correlation equals the minimum value of the matrix.</li>
-<li>Discuss what these two variables represent.</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 11.11</strong></span> <strong>Bar chart: weighted vs simple mean</strong></p>
+<p>Create a bar chart of average life expectancy by continent in 2007, comparing weighted average (<code>sum(lifeExp*pop)/sum(pop)</code>) and simple mean. Use <code>pivot_longer()</code> and <code>position = "dodge"</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-12" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.12</strong></span> <strong>Median GDP bar chart</strong></p>
+<p>Create a bar chart of median GDP per capita by continent in 2007, filled with <code>"lightblue3"</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-13" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.13</strong></span> <strong>Grouped bar chart by year</strong></p>
+<p>Create a bar chart of maximum life expectancy by continent for years 1997, 2002, and 2007. Use <code>position="dodge"</code> and color by year (as factor).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
@@ -783,13 +753,13 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05.html" class="pagination-link" aria-label="05 Descriptive statistics | Part 1 (EDA)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">05 Descriptive statistics | Part 1 (EDA)</span></span>
+      <a href="./10.html" class="pagination-link" aria-label="10 Data Manipulation with IMDb Dataset">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07.html" class="pagination-link" aria-label="07 Data Manipulation with dplyr">
-        <span class="nav-page-text"><span class="chapter-title">07 Data Manipulation with dplyr</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12.html" class="pagination-link" aria-label="12 Data Visualization: Line Charts, Area Charts, and Facets">
+        <span class="nav-page-text"><span class="chapter-title">12 Data Visualization: Line Charts, Area Charts, and Facets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,164 @@
+---
+title: "12 Data Visualization: Line Charts, Area Charts, and Facets"
+format: html
+engine: knitr
+---
+
+::: {#exr-01}
+**Line chart for a single country**
+
+Create a line chart of life expectancy over time for Germany.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(gapminder)
+
+gpmind <- gapminder
+
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Weighted average life expectancy by continent**
+
+Create a line chart of weighted average life expectancy over time for all continents. Use line width 2 and add `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Line chart with points for Japan**
+
+Create a line chart with points showing GDP per capita over time for Japan. Line width 1, point size 3 (use size 5 for visibility), color `"darkblue"` for both, and `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Area chart for Africa**
+
+Create an area chart of total population over time for Africa, filled with `"lightblue3"`, transparency 0.5, and `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Line chart with smooth trend for Rwanda**
+
+Create a line chart of GDP per capita for Rwanda with a smooth trend line. The main line should have width 2 and color `"darkblue"`. The smoothed line should have no standard errors, color `"lightblue3"`, and dashed line type. Add `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Stacked area chart with custom colors**
+
+Create a stacked area chart of population by continent over time with transparency 0.9 and `theme_bw()`. Change the color palette using `scale_fill_manual()` with values: `"#003964"`, `"#00bbce"`, `"#A7C539"`, `"#D33E2C"`, `"#00665a"`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Multi-country line chart with custom colors**
+
+Create a line chart of GDP per capita for USA, China, France, and Germany. Use `theme_bw()`, line width 2, and palette `"#003964"`, `"#00bbce"`, `"#A7C539"`, `"#D33E2C"`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Reorder legend with factor levels**
+
+Take the previous chart and change the legend order to: Germany, France, China, United States. Use `factor()` with custom `levels`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Faceted line chart by continent**
+
+Create a faceted line chart of life expectancy over time, with one panel per continent. Use `facet_wrap(~continent)`, line width 1.5, and color by continent. Don't forget the `group=country` aesthetic.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-10}
+**Median vs weighted average GDP**
+
+Create a line chart of median and weighted average GDP per capita by continent over time. Differentiate the two measures by line type. Use `pivot_longer()`, line width 1.5, and `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**GDP ratio between two countries**
+
+Create a line chart of the ratio of GDP per capita between Germany and China over time. Use `pivot_wider()` to reshape the data, line width 1.5, and `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-12}
+**Annual GDP growth rate**
+
+Create a line chart of the average annual GDP growth rates (in %) over time for Australia. Use the `lag()` function to access the previous value. Line width 1.5 and `theme_bw()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::

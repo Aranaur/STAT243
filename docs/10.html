@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./11.html" rel="next">
 <link href="./09.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -198,6 +199,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./10.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">12 Data Visualization: Line Charts, Area Charts, and Facets</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -270,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_deauth</span>()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Створюємо вектори з посиланнями та іменами файлів</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating vectors with links and filenames</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link"</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"</span></span>
@@ -278,10 +289,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ImdbTitleBasics.csv"</span>, <span class="st">"ImdbTitleRatings.csv"</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Автоматично проходимось по обох векторах і завантажуємо кожен файл</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We automatically iterate through both vectors and download each file</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(links, filenames, <span class="sc">~</span><span class="fu">drive_download</span>(<span class="fu">as_id</span>(.x), <span class="at">path =</span> .y, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Читаємо файли</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading Files</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>imdb_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filenames[<span class="dv">1</span>])</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>imdb_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filenames[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -755,6 +766,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./11.html" class="pagination-link" aria-label="11 Data Visualization: Scatter Plots, Histograms, and Bar Charts">
+        <span class="nav-page-text"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
