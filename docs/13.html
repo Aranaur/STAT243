@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10 Data Manipulation with IMDb Dataset – STAT243: Data Analysis and Visualization in R</title>
+<title>13 Data Visualization: Themes, Fonts, and Custom Styling – STAT243: Data Analysis and Visualization in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./11.html" rel="next">
-<link href="./09.html" rel="prev">
+<link href="./12.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -118,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.html"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13.html"><span class="chapter-title">13 Data Visualization: Themes, Fonts, and Custom Styling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></a>
+  <a href="./10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -211,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">13 Data Visualization: Themes, Fonts, and Custom Styling</span></a>
+  <a href="./13.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">13 Data Visualization: Themes, Fonts, and Custom Styling</span></a>
   </div>
 </li>
     </ul>
@@ -227,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></h1>
+<h1 class="title"><span class="chapter-title">13 Data Visualization: Themes, Fonts, and Custom Styling</span></h1>
 </div>
 
 
@@ -244,120 +243,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="exr-01" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.1</strong></span> <strong>Data Loading and Joining</strong></p>
-<p>Load <a href="https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link"><code>ImdbTitleBasics</code></a> and <a href="https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"><code>ImdbTitleRatings</code></a> into <code>imdb_1</code> and <code>imdb_2</code>. Check column names and first few rows. Join <code>imdb_1</code> and <code>imdb_2</code> into <code>imdb</code>, and remove <code>imdb_1</code> and <code>imdb_2</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googledrive)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Specify the full URLs</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>link_1 <span class="ot">&lt;-</span> <span class="st">"https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>link_2 <span class="ot">&lt;-</span> <span class="st">"https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (Optional) If the files are publicly accessible via a link, this command </span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># will allow you to download them WITHOUT logging in (R will not open a browser window asking you to log in)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_deauth</span>()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Upload the files. as_id() will automatically retrieve the required ID from the link</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_download</span>(<span class="fu">as_id</span>(link_1), <span class="at">path =</span> <span class="st">"ImdbTitleBasics.csv"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_download</span>(<span class="fu">as_id</span>(link_2), <span class="at">path =</span> <span class="st">"ImdbTitleRatings.csv"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Reading local files</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>imdb_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"ImdbTitleBasics.csv"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>imdb_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"ImdbTitleRatings.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Or alternativly
+<span class="screen-reader-only">Tip</span>Links
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer 🎨</a></li>
+<li><a href="https://github.com/BlakeRMills/MoMAColors">MoMAColors 🎨</a></li>
+<li><a href="https://colorbrewer2.org/">ColorBrewer 2.0</a></li>
+<li><a href="https://carto.com/carto-colors/">CARTO Colors</a></li>
+<li><a href="https://jakubnowosad.com/rcartocolor/">rcartocolor</a></li>
+</ul>
+</div>
+</div>
+<div id="exr-01" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.1</strong></span> <strong>Base line chart</strong></p>
+<p>Build a line chart of weighted average GDP per capita over time by continent. Save the result into an object <code>ggp</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googledrive)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_deauth</span>()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating vectors with links and filenames</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://drive.google.com/file/d/1FzYor9a8oY-6GKQAkbUGF4xO87nAlVmT/view?usp=drive_link"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://drive.google.com/file/d/1r4mHgnORXQVPs6ugUDMZoaY9vT4rc2fG/view?usp=drive_link"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ImdbTitleBasics.csv"</span>, <span class="st">"ImdbTitleRatings.csv"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We automatically iterate through both vectors and download each file</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(links, filenames, <span class="sc">~</span><span class="fu">drive_download</span>(<span class="fu">as_id</span>(.x), <span class="at">path =</span> .y, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading Files</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>imdb_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filenames[<span class="dv">1</span>])</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>imdb_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filenames[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Pacifico"</span>, <span class="st">"cute_font"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>gpmind <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-02" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.2</strong></span> <strong>Data Cleaning</strong></p>
-<p>Clean the <code>imdb</code> a little bit. First check the unique genres in the dataset, discuss. Then remove all the movies where the “Adult” in genres (use <code>str_detect()</code> for it) and also remake <code>startYear</code>, <code>endYear</code> and <code>runtimeMinutes</code> as numeric.</p>
+<p><span class="theorem-title"><strong>Exercise 13.2</strong></span> <strong>Add labels</strong></p>
+<p>Add a meaningful title, x-axis label, y-axis label, and caption to <code>ggp</code>. Resave into <code>ggp</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-03" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.3</strong></span> <strong>Apply a theme with a custom font</strong></p>
+<p>Add <code>theme_minimal()</code> to <code>ggp</code>. Then try passing <code>base_family = "cute_font"</code> as a parameter to <code>theme_minimal()</code>. Resave <code>ggp</code> with the font-based theme.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-03" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.3</strong></span> <strong>Top Movies by Runtime</strong></p>
-<p>Show top-2 movies by the runtime in each genre, checking only titles with 1 genre. <em>Tip:</em> If there are 2+ genres, what symbol will definitely be in genres? <em>Tip 2:</em> You may need function <code>slice_head()</code> to take 2 titles from each group.</p>
+<div id="exr-04" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.4</strong></span> <strong>Custom color palette</strong></p>
+<p>Create a vector <code>palette_cute</code> with the colors <code>"#FF69B4"</code>, <code>"#C71585"</code>, <code>"#8B008B"</code>, <code>"#FFA07A"</code>, <code>"#DC143C"</code>. Apply it to <code>ggp</code> using <code>scale_color_manual()</code>, assigning each color to its continent by name. Resave <code>ggp</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-04" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.4</strong></span> <strong>Sorting by Decades</strong></p>
-<p>Sort in descending order title average scores for each decade, taking only titles with 1k+ votes.</p>
+<div id="exr-05" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.5</strong></span> <strong>Plot background color</strong></p>
+<p>Change the plot background color of <code>ggp</code> to light pink <code>"#FFF0F5"</code> using <code>theme(plot.background = ...)</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-05" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.5</strong></span> <strong>Counting by Format</strong></p>
-<p>For movies and tvseries make a table 1x2 with amount of movies and TV series.</p>
+<div id="exr-06" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.6</strong></span> <strong>Panel background color</strong></p>
+<p>Change the panel (chart area) background color to soft peach <code>"#FFE4E1"</code>. Keep the plot background from the previous exercise.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-06" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.6</strong></span> <strong>Most Voted per Year</strong></p>
-<p>Find the most voted title for each year.</p>
+<div id="exr-07" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.7</strong></span> <strong>Legend background</strong></p>
+<p>Modify the legend background and legend key colors to baby pink <code>"#FFD1DC"</code>. Keep all previous styling.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-07" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.7</strong></span> <strong>Rating Distributions</strong></p>
-<p>Compare the rating distribution of movies and TV series. Calculate Mean, median and standard deviation.</p>
+<div id="exr-08" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.8</strong></span> <strong>Legend text styling</strong></p>
+<p>Customize the legend text: size 14, color <code>"#8B008B"</code>. Keep all previous styling.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
 <div id="exr-09" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10.8</strong></span> <strong>Separating Rows by Genres</strong></p>
-<p>Use <code>separate_rows()</code> on genres with <code>sep=","</code> to divide titles with multiple genres into multiple rows where each observation may appear multiple times, but with different genres. Check the amount of observations in this case. Compare with the amount of observations of just <code>imdb</code> and the case where you leave only titles with a single genre. Now check unique genres for <code>imdb</code> with separated rows and compare.</p>
+<p><span class="theorem-title"><strong>Exercise 13.9</strong></span> <strong>Title styling</strong></p>
+<p>Style the plot title: bold, size 20, color <code>"#DC143C"</code>. Keep all previous styling.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-10" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.10</strong></span> <strong>Axis title styling</strong></p>
+<p>Customize axis titles: size 16, color <code>"#C71585"</code>. Keep all previous styling.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-11" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.11</strong></span> <strong>Axis text styling</strong></p>
+<p>Change the axis text (tick labels) color to deep pink <code>"#FF1493"</code> and size to 14. Keep all previous styling.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-12" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.12</strong></span> <strong>Create a reusable custom theme</strong></p>
+<p>Combine all the styling from previous exercises into a single <code>theme_cute</code> object. Apply it to <code>ggp</code> and adjust the title to span two lines with <code>\n</code>. Use larger font sizes (legend text 20, title 28, axis titles 24, axis text 20) and add caption and legend title styling.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-13" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.13</strong></span> <strong>Build the KSE palette</strong></p>
+<p>Create a vector <code>palette_kse</code> with 4 brand colors of KSE: <code>"#003964"</code>, <code>"#00bbce"</code>, <code>"#A7C539"</code>, <code>"#D33E2C"</code>. Apply it to the weighted average GDP line chart using <code>scale_color_manual()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
@@ -766,14 +780,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./09.html" class="pagination-link" aria-label="09 Tidying Data and Joins (tidyr &amp; dplyr)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">09 Tidying Data and Joins (tidyr &amp; dplyr)</span></span>
+      <a href="./12.html" class="pagination-link" aria-label="12 Data Visualization: Line Charts, Area Charts, and Facets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">12 Data Visualization: Line Charts, Area Charts, and Facets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./11.html" class="pagination-link" aria-label="11 Data Visualization: Scatter Plots, Histograms, and Bar Charts">
-        <span class="nav-page-text"><span class="chapter-title">11 Data Visualization: Scatter Plots, Histograms, and Bar Charts</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

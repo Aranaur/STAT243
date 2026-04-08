@@ -1,0 +1,192 @@
+---
+title: "13 Data Visualization: Themes, Fonts, and Custom Styling"
+format: html
+engine: knitr
+---
+
+::: {.callout-tip}
+## Links
+
+- [MetBrewer 🎨](https://github.com/BlakeRMills/MetBrewer)
+- [MoMAColors 🎨](https://github.com/BlakeRMills/MoMAColors)
+- [ColorBrewer 2.0](https://colorbrewer2.org/)
+- [CARTO Colors](https://carto.com/carto-colors/)
+- [rcartocolor](https://jakubnowosad.com/rcartocolor/)
+
+:::
+
+::: {#exr-01}
+**Base line chart**
+
+Build a line chart of weighted average GDP per capita over time by continent. Save the result into an object `ggp`.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(gapminder)
+library(showtext)
+
+font_add_google("Pacifico", "cute_font")
+showtext_auto()
+
+gpmind <- gapminder
+
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Add labels**
+
+Add a meaningful title, x-axis label, y-axis label, and caption to `ggp`. Resave into `ggp`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Apply a theme with a custom font**
+
+Add `theme_minimal()` to `ggp`. Then try passing `base_family = "cute_font"` as a parameter to `theme_minimal()`. Resave `ggp` with the font-based theme.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Custom color palette**
+
+Create a vector `palette_cute` with the colors `"#FF69B4"`, `"#C71585"`, `"#8B008B"`, `"#FFA07A"`, `"#DC143C"`. Apply it to `ggp` using `scale_color_manual()`, assigning each color to its continent by name. Resave `ggp`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Plot background color**
+
+Change the plot background color of `ggp` to light pink `"#FFF0F5"` using `theme(plot.background = ...)`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-06}
+**Panel background color**
+
+Change the panel (chart area) background color to soft peach `"#FFE4E1"`. Keep the plot background from the previous exercise.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Legend background**
+
+Modify the legend background and legend key colors to baby pink `"#FFD1DC"`. Keep all previous styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Legend text styling**
+
+Customize the legend text: size 14, color `"#8B008B"`. Keep all previous styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Title styling**
+
+Style the plot title: bold, size 20, color `"#DC143C"`. Keep all previous styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-10}
+**Axis title styling**
+
+Customize axis titles: size 16, color `"#C71585"`. Keep all previous styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**Axis text styling**
+
+Change the axis text (tick labels) color to deep pink `"#FF1493"` and size to 14. Keep all previous styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-12}
+**Create a reusable custom theme**
+
+Combine all the styling from previous exercises into a single `theme_cute` object. Apply it to `ggp` and adjust the title to span two lines with `\n`. Use larger font sizes (legend text 20, title 28, axis titles 24, axis text 20) and add caption and legend title styling.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-13}
+**Build the KSE palette**
+
+Create a vector `palette_kse` with 4 brand colors of KSE: `"#003964"`, `"#00bbce"`, `"#A7C539"`, `"#D33E2C"`. Apply it to the weighted average GDP line chart using `scale_color_manual()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
