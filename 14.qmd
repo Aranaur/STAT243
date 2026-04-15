@@ -1,0 +1,367 @@
+---
+title: "14 Introduction to Linear Regression"
+format: html
+engine: knitr
+---
+
+::: {.panel-tabset}
+
+### Regression Analysis, Part 1
+
+[Link, Part 1](https://aranaur.quarto.pub/ds24lec09)
+
+```{=html}
+<iframe class="slide-deck" src="https://aranaur.quarto.pub/ds24lec09/#/title-slide" height="420" width="747" style="border: 1px solid #581B39;"></iframe>
+```
+
+### Regression Analysis, Part 2
+
+[Link, Part 2](https://aranaur.quarto.pub/ds24lec10)
+
+```{=html}
+<iframe class="slide-deck" src="https://aranaur.quarto.pub/ds24lec10/#/title-slide" height="420" width="747" style="border: 1px solid #581B39;"></iframe>
+```
+
+:::
+
+
+```{r}
+#| eval: false
+#| label: setup
+library(tidyverse)
+library(gapminder)
+library(Metrics)
+
+gpmind <- gapminder %>%
+  select(country, continent, year, lifeExp, pop, gdpPercap)
+```
+
+---
+
+## Part 1: What is a linear regression?
+
+A linear regression is a **rule** that predicts one variable from another.
+The rule looks like: `Y = a + b * X`, where `a` is the intercept and `b` is the slope.
+We choose the rule that minimizes the total squared prediction error.
+
+::: {#exr-01}
+**Explore the data**
+
+Print a summary of `gpmind`. What is a single observation here? What are `lifeExp` and `gdpPercap`? Which variable would you predict and why?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-02}
+**Scatter plot: raw GDP vs Life Expectancy**
+
+Build a scatter plot of `gdpPercap` on X and `lifeExp` on Y. Color points by continent and set `alpha = 0.4`. Does the relationship look linear?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-03}
+**Scatter plot: log GDP vs Life Expectancy**
+
+Build the same scatter plot but with `log(gdpPercap)` on X. Does it look more linear now? What kind of formula could describe this line?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-04}
+**Fit a simple linear model**
+
+Fit a linear model of `lifeExp` on `log(gdpPercap)`. Save it as `lm1` and print it to see the coefficients. What do the two numbers (intercept and coefficient) mean?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-05}
+**Interpret the summary**
+
+Print `summary(lm1)`. Focus only on the Coefficients table. If `log(gdpPercap)` increases by 1, what happens to `lifeExp`? Is this a causal statement?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 2: Fitted values, residuals, and what the model actually does
+
+The model produces for each observation:
+
+- a **fitted value** — what it predicts
+- a **residual** — how wrong it was (`actual − fitted`)
+
+::: {#exr-06}
+**Extract fitted values and residuals**
+
+Extract the fitted values and residuals from `lm1` (they are elements inside the `lm1` object). Print the first 6 of each using `head()`. Verify by hand that `residual = lifeExp − fitted value` for the first observation.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-07}
+**Verify residuals formally**
+
+Verify for **all** observations that `residual == lifeExp − fitted.values` (round to 3 decimals). Use `sum()` and `==` to count how many match.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-08}
+**Fitted vs actual plot**
+
+Plot fitted values on X and actual `lifeExp` on Y. Add `geom_abline()` in blue with `linewidth = 2`. What does a point far from the diagonal line mean?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-09}
+**Distribution of residuals**
+
+Plot the distribution of residuals using `geom_density()`. First convert residuals from `lm1` to a data frame. What shape would we ideally want to see and why?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 3: How good is the model? R-squared
+
+**R-squared** answers: how much of the variation in Y does our model explain?
+It ranges from 0 (explains nothing) to 1 (explains everything).
+
+::: {#exr-10}
+**Build R-squared by hand**
+
+Save `summary(lm1)` into `smr1`. Then:
+
+1. Compute `TSS` = sum of squared deviations of `lifeExp` from its mean.
+2. Compute `RSS` = sum of squared residuals from `lm1`.
+3. Compute `R-squared = 1 − RSS/TSS`.
+
+Verify it matches `smr1$r.squared`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-11}
+**R-squared as squared correlation**
+
+Verify that R-squared equals the squared Pearson correlation between fitted values and actual `lifeExp`. Compare to `smr1$r.squared`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 4: Are the coefficients significant?
+
+A p-value tells us: if the true coefficient were zero, how likely is it to observe a coefficient this large just by random sampling? Convention: p-value < 0.05 is statistically significant.
+
+::: {#exr-12}
+**Extract p-values**
+
+Extract the full coefficients table from `smr1`. Then extract only the p-values (column 4) and check which are below 0.05.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 5: Multiple regression — adding more predictors
+
+We can extend the rule: `Y = a + b1*X1 + b2*X2 + ...`
+Each coefficient means: the effect of X1 **holding all other X constant**.
+
+::: {#exr-13}
+**Add year as predictor**
+
+Fit `lm2 <- lm(lifeExp ~ log(gdpPercap) + year, data = gpmind)`. Print `summary(lm2)`. How did R-squared change? Interpret the coefficient on `year`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-14}
+**Add continent as predictor**
+
+Fit `lm3 <- lm(lifeExp ~ log(gdpPercap) + year + continent, data = gpmind)`. Print `summary(lm3)`. What happened to R-squared? Why is one continent missing from the table?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-15}
+**Compare three models**
+
+Print R-squared and adjusted R-squared for `lm1`, `lm2`, and `lm3`. Why is adjusted R-squared useful when adding predictors?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 6: RMSE — measuring error in interpretable units
+
+RMSE (Root Mean Squared Error) measures error in the same units as Y.
+Roughly: on average, predictions are off by RMSE units.
+
+::: {#exr-16}
+**Compute RMSE manually and with Metrics**
+
+Compute RMSE for `lm1` manually as `sqrt(mean(residuals^2))`. Then compute it using `Metrics::rmse()`. Do they match?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-17}
+**Compare RMSE across models**
+
+Compute RMSE for all three models using `Metrics::rmse()`. Which model has the lowest error?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 7: Making predictions
+
+::: {#exr-18}
+**Predict life expectancy for Ukraine (lm1)**
+
+Use `lm1` to predict life expectancy for Ukraine assuming average annual income = `12 * 600` USD. Create a one-row data frame with that `gdpPercap`, then use `predict()`.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-19}
+**Predict with multiple predictors (lm3)**
+
+Use `lm3` to predict life expectancy for Ukraine in 2007. Create a one-row data frame with `gdpPercap = 7200`, `year = 2007`, `continent = "Europe"` (as a factor with levels from `gpmind`). Is the `lm3` prediction better or worse than `lm1`?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+## Part 8: Train / test split — does the model generalize?
+
+A train/test split lets us check if the model generalizes to **new data**.
+
+::: {#exr-20}
+**Split into train and test**
+
+Split `gpmind` into 75% training and 25% test sets using `runif()`. Use `set.seed(42)`. Call them `gp_train` and `gp_test`. Print the number of rows in each.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-21}
+**Train RMSE vs test RMSE**
+
+Train `lm1` again but only on `gp_train`. Call it `lm_tr`. Compute RMSE on the training set and RMSE on the test set. Are they close? What would a big gap mean?
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::
+
+---
+
+::: {#exr-22}
+**Plot predictions on the test set**
+
+Plot predicted vs actual `lifeExp` for the **test set only**. Add `geom_abline()` in blue. Write a comment about what you observe.
+
+```{r}
+#| eval: false
+# Your code here
+```
+:::

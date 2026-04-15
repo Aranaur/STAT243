@@ -138,5 +138,95 @@
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>13 Data Visualization: Themes, Fonts, and Custom Styling</span>"
     ]
+  },
+  {
+    "objectID": "14.html",
+    "href": "14.html",
+    "title": "14 Introduction to Linear Regression",
+    "section": "",
+    "text": "Part 1: What is a linear regression?\nA linear regression is a rule that predicts one variable from another. The rule looks like: Y = a + b * X, where a is the intercept and b is the slope. We choose the rule that minimizes the total squared prediction error.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-1-what-is-a-linear-regression",
+    "href": "14.html#part-1-what-is-a-linear-regression",
+    "title": "14 Introduction to Linear Regression",
+    "section": "",
+    "text": "Exercise 14.1 Explore the data\nPrint a summary of gpmind. What is a single observation here? What are lifeExp and gdpPercap? Which variable would you predict and why?\n\n# Your code here\n\n\n\n\nExercise 14.2 Scatter plot: raw GDP vs Life Expectancy\nBuild a scatter plot of gdpPercap on X and lifeExp on Y. Color points by continent and set alpha = 0.4. Does the relationship look linear?\n\n# Your code here\n\n\n\n\nExercise 14.3 Scatter plot: log GDP vs Life Expectancy\nBuild the same scatter plot but with log(gdpPercap) on X. Does it look more linear now? What kind of formula could describe this line?\n\n# Your code here\n\n\n\n\nExercise 14.4 Fit a simple linear model\nFit a linear model of lifeExp on log(gdpPercap). Save it as lm1 and print it to see the coefficients. What do the two numbers (intercept and coefficient) mean?\n\n# Your code here\n\n\n\n\nExercise 14.5 Interpret the summary\nPrint summary(lm1). Focus only on the Coefficients table. If log(gdpPercap) increases by 1, what happens to lifeExp? Is this a causal statement?\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-2-fitted-values-residuals-and-what-the-model-actually-does",
+    "href": "14.html#part-2-fitted-values-residuals-and-what-the-model-actually-does",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 2: Fitted values, residuals, and what the model actually does",
+    "text": "Part 2: Fitted values, residuals, and what the model actually does\nThe model produces for each observation:\n\na fitted value — what it predicts\na residual — how wrong it was (actual − fitted)\n\n\nExercise 14.6 Extract fitted values and residuals\nExtract the fitted values and residuals from lm1 (they are elements inside the lm1 object). Print the first 6 of each using head(). Verify by hand that residual = lifeExp − fitted value for the first observation.\n\n# Your code here\n\n\n\n\nExercise 14.7 Verify residuals formally\nVerify for all observations that residual == lifeExp − fitted.values (round to 3 decimals). Use sum() and == to count how many match.\n\n# Your code here\n\n\n\n\nExercise 14.8 Fitted vs actual plot\nPlot fitted values on X and actual lifeExp on Y. Add geom_abline() in blue with linewidth = 2. What does a point far from the diagonal line mean?\n\n# Your code here\n\n\n\n\nExercise 14.9 Distribution of residuals\nPlot the distribution of residuals using geom_density(). First convert residuals from lm1 to a data frame. What shape would we ideally want to see and why?\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-3-how-good-is-the-model-r-squared",
+    "href": "14.html#part-3-how-good-is-the-model-r-squared",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 3: How good is the model? R-squared",
+    "text": "Part 3: How good is the model? R-squared\nR-squared answers: how much of the variation in Y does our model explain? It ranges from 0 (explains nothing) to 1 (explains everything).\n\nExercise 14.10 Build R-squared by hand\nSave summary(lm1) into smr1. Then:\n\nCompute TSS = sum of squared deviations of lifeExp from its mean.\nCompute RSS = sum of squared residuals from lm1.\nCompute R-squared = 1 − RSS/TSS.\n\nVerify it matches smr1$r.squared.\n\n# Your code here\n\n\n\n\nExercise 14.11 R-squared as squared correlation\nVerify that R-squared equals the squared Pearson correlation between fitted values and actual lifeExp. Compare to smr1$r.squared.\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-4-are-the-coefficients-significant",
+    "href": "14.html#part-4-are-the-coefficients-significant",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 4: Are the coefficients significant?",
+    "text": "Part 4: Are the coefficients significant?\nA p-value tells us: if the true coefficient were zero, how likely is it to observe a coefficient this large just by random sampling? Convention: p-value &lt; 0.05 is statistically significant.\n\nExercise 14.12 Extract p-values\nExtract the full coefficients table from smr1. Then extract only the p-values (column 4) and check which are below 0.05.\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-5-multiple-regression-adding-more-predictors",
+    "href": "14.html#part-5-multiple-regression-adding-more-predictors",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 5: Multiple regression — adding more predictors",
+    "text": "Part 5: Multiple regression — adding more predictors\nWe can extend the rule: Y = a + b1*X1 + b2*X2 + ... Each coefficient means: the effect of X1 holding all other X constant.\n\nExercise 14.13 Add year as predictor\nFit lm2 &lt;- lm(lifeExp ~ log(gdpPercap) + year, data = gpmind). Print summary(lm2). How did R-squared change? Interpret the coefficient on year.\n\n# Your code here\n\n\n\n\nExercise 14.14 Add continent as predictor\nFit lm3 &lt;- lm(lifeExp ~ log(gdpPercap) + year + continent, data = gpmind). Print summary(lm3). What happened to R-squared? Why is one continent missing from the table?\n\n# Your code here\n\n\n\n\nExercise 14.15 Compare three models\nPrint R-squared and adjusted R-squared for lm1, lm2, and lm3. Why is adjusted R-squared useful when adding predictors?\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-6-rmse-measuring-error-in-interpretable-units",
+    "href": "14.html#part-6-rmse-measuring-error-in-interpretable-units",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 6: RMSE — measuring error in interpretable units",
+    "text": "Part 6: RMSE — measuring error in interpretable units\nRMSE (Root Mean Squared Error) measures error in the same units as Y. Roughly: on average, predictions are off by RMSE units.\n\nExercise 14.16 Compute RMSE manually and with Metrics\nCompute RMSE for lm1 manually as sqrt(mean(residuals^2)). Then compute it using Metrics::rmse(). Do they match?\n\n# Your code here\n\n\n\n\nExercise 14.17 Compare RMSE across models\nCompute RMSE for all three models using Metrics::rmse(). Which model has the lowest error?\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-7-making-predictions",
+    "href": "14.html#part-7-making-predictions",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 7: Making predictions",
+    "text": "Part 7: Making predictions\n\nExercise 14.18 Predict life expectancy for Ukraine (lm1)\nUse lm1 to predict life expectancy for Ukraine assuming average annual income = 12 * 600 USD. Create a one-row data frame with that gdpPercap, then use predict().\n\n# Your code here\n\n\n\n\nExercise 14.19 Predict with multiple predictors (lm3)\nUse lm3 to predict life expectancy for Ukraine in 2007. Create a one-row data frame with gdpPercap = 7200, year = 2007, continent = \"Europe\" (as a factor with levels from gpmind). Is the lm3 prediction better or worse than lm1?\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
+  },
+  {
+    "objectID": "14.html#part-8-train-test-split-does-the-model-generalize",
+    "href": "14.html#part-8-train-test-split-does-the-model-generalize",
+    "title": "14 Introduction to Linear Regression",
+    "section": "Part 8: Train / test split — does the model generalize?",
+    "text": "Part 8: Train / test split — does the model generalize?\nA train/test split lets us check if the model generalizes to new data.\n\nExercise 14.20 Split into train and test\nSplit gpmind into 75% training and 25% test sets using runif(). Use set.seed(42). Call them gp_train and gp_test. Print the number of rows in each.\n\n# Your code here\n\n\n\n\nExercise 14.21 Train RMSE vs test RMSE\nTrain lm1 again but only on gp_train. Call it lm_tr. Compute RMSE on the training set and RMSE on the test set. Are they close? What would a big gap mean?\n\n# Your code here\n\n\n\n\nExercise 14.22 Plot predictions on the test set\nPlot predicted vs actual lifeExp for the test set only. Add geom_abline() in blue. Write a comment about what you observe.\n\n# Your code here",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>14 Introduction to Linear Regression</span>"
+    ]
   }
 ]

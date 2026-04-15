@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>09 Tidying Data and Joins (tidyr &amp; dplyr) – STAT243: Data Analysis and Visualization in R</title>
+<title>14 Introduction to Linear Regression – STAT243: Data Analysis and Visualization in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./10.html" rel="next">
-<link href="./08.html" rel="prev">
+<link href="./13.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -118,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-title">09 Tidying Data and Joins (tidyr &amp; dplyr)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14.html"><span class="chapter-title">14 Introduction to Linear Regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">09 Tidying Data and Joins (tidyr &amp; dplyr)</span></a>
+  <a href="./09.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">09 Tidying Data and Joins (tidyr &amp; dplyr)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">14 Introduction to Linear Regression</span></a>
+  <a href="./14.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">14 Introduction to Linear Regression</span></a>
   </div>
 </li>
     </ul>
@@ -224,15 +223,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-1-what-is-a-linear-regression" id="toc-part-1-what-is-a-linear-regression" class="nav-link active" data-scroll-target="#part-1-what-is-a-linear-regression">Part 1: What is a linear regression?</a></li>
+  <li><a href="#part-2-fitted-values-residuals-and-what-the-model-actually-does" id="toc-part-2-fitted-values-residuals-and-what-the-model-actually-does" class="nav-link" data-scroll-target="#part-2-fitted-values-residuals-and-what-the-model-actually-does">Part 2: Fitted values, residuals, and what the model actually does</a></li>
+  <li><a href="#part-3-how-good-is-the-model-r-squared" id="toc-part-3-how-good-is-the-model-r-squared" class="nav-link" data-scroll-target="#part-3-how-good-is-the-model-r-squared">Part 3: How good is the model? R-squared</a></li>
+  <li><a href="#part-4-are-the-coefficients-significant" id="toc-part-4-are-the-coefficients-significant" class="nav-link" data-scroll-target="#part-4-are-the-coefficients-significant">Part 4: Are the coefficients significant?</a></li>
+  <li><a href="#part-5-multiple-regression-adding-more-predictors" id="toc-part-5-multiple-regression-adding-more-predictors" class="nav-link" data-scroll-target="#part-5-multiple-regression-adding-more-predictors">Part 5: Multiple regression — adding more predictors</a></li>
+  <li><a href="#part-6-rmse-measuring-error-in-interpretable-units" id="toc-part-6-rmse-measuring-error-in-interpretable-units" class="nav-link" data-scroll-target="#part-6-rmse-measuring-error-in-interpretable-units">Part 6: RMSE — measuring error in interpretable units</a></li>
+  <li><a href="#part-7-making-predictions" id="toc-part-7-making-predictions" class="nav-link" data-scroll-target="#part-7-making-predictions">Part 7: Making predictions</a></li>
+  <li><a href="#part-8-train-test-split-does-the-model-generalize" id="toc-part-8-train-test-split-does-the-model-generalize" class="nav-link" data-scroll-target="#part-8-train-test-split-does-the-model-generalize">Part 8: Train / test split — does the model generalize?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">09 Tidying Data and Joins (tidyr &amp; dplyr)</span></h1>
+<h1 class="title"><span class="chapter-title">14 Introduction to Linear Regression</span></h1>
 </div>
 
 
@@ -249,95 +261,246 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="exr-01" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> <strong>Pivoting Wider: Basic</strong></p>
-<p>Convert the counties dataset into a wide format where the columns are <code>county</code>, <code>state</code>, <code>metro</code> or <code>non-metro</code> (after pivoting) and values are <code>population</code>. Do it with <code>pivot_wider()</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Regression Analysis, Part 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Regression Analysis, Part 2</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><a href="https://aranaur.quarto.pub/ds24lec09">Link, Part 1</a></p>
+<iframe class="slide-deck" src="https://aranaur.quarto.pub/ds24lec09/#/title-slide" height="420" width="747" style="border: 1px solid #581B39;"></iframe>
 </div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><a href="https://aranaur.quarto.pub/ds24lec10">Link, Part 2</a></p>
+<iframe class="slide-deck" src="https://aranaur.quarto.pub/ds24lec10/#/title-slide" height="420" width="747" style="border: 1px solid #581B39;"></iframe>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Metrics)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gpmind <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, year, lifeExp, pop, gdpPercap)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
-<div id="exr-02" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> <strong>Pivoting Wider: Aggregation</strong></p>
-<p>Convert the counties dataset into a wide format where for each state the population is calculated by metro and non-metro. So we’ll have columns <code>state</code>, <code>metro</code>, <code>nonmetro</code> and 50 rows for each state.</p>
+<section id="part-1-what-is-a-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-what-is-a-linear-regression">Part 1: What is a linear regression?</h2>
+<p>A linear regression is a <strong>rule</strong> that predicts one variable from another. The rule looks like: <code>Y = a + b * X</code>, where <code>a</code> is the intercept and <code>b</code> is the slope. We choose the rule that minimizes the total squared prediction error.</p>
+<div id="exr-01" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.1</strong></span> <strong>Explore the data</strong></p>
+<p>Print a summary of <code>gpmind</code>. What is a single observation here? What are <code>lifeExp</code> and <code>gdpPercap</code>? Which variable would you predict and why?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-03" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> <strong>Pivoting Wider: States as Columns</strong></p>
-<p>Convert the counties dataset into a wide format where each state becomes a column and the values are the total population in that state. Save into <code>counties_pop_wide</code>.</p>
+<div id="exr-02" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.2</strong></span> <strong>Scatter plot: raw GDP vs Life Expectancy</strong></p>
+<p>Build a scatter plot of <code>gdpPercap</code> on X and <code>lifeExp</code> on Y. Color points by continent and set <code>alpha = 0.4</code>. Does the relationship look linear?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-04" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.4</strong></span> <strong>Pivoting Longer</strong></p>
-<p>Convert the wide-format data back into a long format where the state names become a column again from <code>counties_pop_wide</code>.</p>
+<div id="exr-03" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.3</strong></span> <strong>Scatter plot: log GDP vs Life Expectancy</strong></p>
+<p>Build the same scatter plot but with <code>log(gdpPercap)</code> on X. Does it look more linear now? What kind of formula could describe this line?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-05" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.5</strong></span> <strong>Summary and Pivoting</strong></p>
-<p>Create a summary table showing the average income in each metro and non-metro area per region, then pivot it wider by metro and save into <code>counties_reg_metro</code>.</p>
+<div id="exr-04" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.4</strong></span> <strong>Fit a simple linear model</strong></p>
+<p>Fit a linear model of <code>lifeExp</code> on <code>log(gdpPercap)</code>. Save it as <code>lm1</code> and print it to see the coefficients. What do the two numbers (intercept and coefficient) mean?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-06" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.6</strong></span> <strong>Joining Data: left_join</strong></p>
-<p>Create another table by region for average income calculated correctly, save it into <code>counties_reg_tot</code> and connect it to <code>counties_reg_metro</code> with the <code>left_join()</code> and resave the result as the <code>counties_reg_tot</code>.</p>
+<div id="exr-05" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.5</strong></span> <strong>Interpret the summary</strong></p>
+<p>Print <code>summary(lm1)</code>. Focus only on the Coefficients table. If <code>log(gdpPercap)</code> increases by 1, what happens to <code>lifeExp</code>? Is this a causal statement?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-07" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.7</strong></span> <strong>Complex Pipeline: Population &amp; Income (Part 1)</strong></p>
-<p>Create a total population by region and metro, make it wider to have metro and nonmetro columns, save into <code>counties_reg_metro_pop</code>. Then do the same but just by region and save into <code>counties_metro_pop</code>.</p>
+</section>
+<section id="part-2-fitted-values-residuals-and-what-the-model-actually-does" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-fitted-values-residuals-and-what-the-model-actually-does">Part 2: Fitted values, residuals, and what the model actually does</h2>
+<p>The model produces for each observation:</p>
+<ul>
+<li>a <strong>fitted value</strong> — what it predicts</li>
+<li>a <strong>residual</strong> — how wrong it was (<code>actual − fitted</code>)</li>
+</ul>
+<div id="exr-06" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.6</strong></span> <strong>Extract fitted values and residuals</strong></p>
+<p>Extract the fitted values and residuals from <code>lm1</code> (they are elements inside the <code>lm1</code> object). Print the first 6 of each using <code>head()</code>. Verify by hand that <code>residual = lifeExp − fitted value</code> for the first observation.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-08" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.8</strong></span> <strong>Complex Pipeline: Population &amp; Income (Part 2)</strong></p>
-<p>To <code>counties_reg_metro_pop</code> join the <code>counties_metro_pop</code> and calculate the share of metro population in total population, same for nonmetro. Then join the <code>counties_reg_tot</code> by region and give suffixes <code>_perc</code> and <code>_inc</code> for percentages and income. At the last stage, compare <code>mean_inc</code> with <code>mean_inc_new</code>, which is calculated as mean income for metro and non-metro multiplied by the percentage of population in metro and non-metro area. Are they the same? Why?</p>
+<div id="exr-07" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.7</strong></span> <strong>Verify residuals formally</strong></p>
+<p>Verify for <strong>all</strong> observations that <code>residual == lifeExp − fitted.values</code> (round to 3 decimals). Use <code>sum()</code> and <code>==</code> to count how many match.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-09" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.9</strong></span> <strong>Joining External Data</strong></p>
-<p>Perform a left join between the <code>counties</code> dataset and a dataset containing state abbreviations (e.g., <code>state.abb</code> and <code>state.name</code> from base R), ensuring that no counties are lost in the process.</p>
+<div id="exr-08" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.8</strong></span> <strong>Fitted vs actual plot</strong></p>
+<p>Plot fitted values on X and actual <code>lifeExp</code> on Y. Add <code>geom_abline()</code> in blue with <code>linewidth = 2</code>. What does a point far from the diagonal line mean?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-10" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.10</strong></span> <strong>Cross Tabulation &amp; Pivoting</strong></p>
-<p>Create a table with percentage of white, black, and other people (columns) and metro / non-metro county (rows).</p>
+<div id="exr-09" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.9</strong></span> <strong>Distribution of residuals</strong></p>
+<p>Plot the distribution of residuals using <code>geom_density()</code>. First convert residuals from <code>lm1</code> to a data frame. What shape would we ideally want to see and why?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <hr>
-<div id="exr-11" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.11</strong></span> <strong>Calculations and Joins</strong></p>
-<p>Find the population density for each state and the average income for each state, then join them. Check the correlation between two.</p>
+</section>
+<section id="part-3-how-good-is-the-model-r-squared" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-how-good-is-the-model-r-squared">Part 3: How good is the model? R-squared</h2>
+<p><strong>R-squared</strong> answers: how much of the variation in Y does our model explain? It ranges from 0 (explains nothing) to 1 (explains everything).</p>
+<div id="exr-10" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.10</strong></span> <strong>Build R-squared by hand</strong></p>
+<p>Save <code>summary(lm1)</code> into <code>smr1</code>. Then:</p>
+<ol type="1">
+<li>Compute <code>TSS</code> = sum of squared deviations of <code>lifeExp</code> from its mean.</li>
+<li>Compute <code>RSS</code> = sum of squared residuals from <code>lm1</code>.</li>
+<li>Compute <code>R-squared = 1 − RSS/TSS</code>.</li>
+</ol>
+<p>Verify it matches <code>smr1$r.squared</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<hr>
+<div id="exr-11" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.11</strong></span> <strong>R-squared as squared correlation</strong></p>
+<p>Verify that R-squared equals the squared Pearson correlation between fitted values and actual <code>lifeExp</code>. Compare to <code>smr1$r.squared</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-4-are-the-coefficients-significant" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-are-the-coefficients-significant">Part 4: Are the coefficients significant?</h2>
+<p>A p-value tells us: if the true coefficient were zero, how likely is it to observe a coefficient this large just by random sampling? Convention: p-value &lt; 0.05 is statistically significant.</p>
+<div id="exr-12" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.12</strong></span> <strong>Extract p-values</strong></p>
+<p>Extract the full coefficients table from <code>smr1</code>. Then extract only the p-values (column 4) and check which are below 0.05.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-5-multiple-regression-adding-more-predictors" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-multiple-regression-adding-more-predictors">Part 5: Multiple regression — adding more predictors</h2>
+<p>We can extend the rule: <code>Y = a + b1*X1 + b2*X2 + ...</code> Each coefficient means: the effect of X1 <strong>holding all other X constant</strong>.</p>
+<div id="exr-13" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.13</strong></span> <strong>Add year as predictor</strong></p>
+<p>Fit <code>lm2 &lt;- lm(lifeExp ~ log(gdpPercap) + year, data = gpmind)</code>. Print <code>summary(lm2)</code>. How did R-squared change? Interpret the coefficient on <code>year</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-14" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.14</strong></span> <strong>Add continent as predictor</strong></p>
+<p>Fit <code>lm3 &lt;- lm(lifeExp ~ log(gdpPercap) + year + continent, data = gpmind)</code>. Print <code>summary(lm3)</code>. What happened to R-squared? Why is one continent missing from the table?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-15" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.15</strong></span> <strong>Compare three models</strong></p>
+<p>Print R-squared and adjusted R-squared for <code>lm1</code>, <code>lm2</code>, and <code>lm3</code>. Why is adjusted R-squared useful when adding predictors?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-6-rmse-measuring-error-in-interpretable-units" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-rmse-measuring-error-in-interpretable-units">Part 6: RMSE — measuring error in interpretable units</h2>
+<p>RMSE (Root Mean Squared Error) measures error in the same units as Y. Roughly: on average, predictions are off by RMSE units.</p>
+<div id="exr-16" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.16</strong></span> <strong>Compute RMSE manually and with Metrics</strong></p>
+<p>Compute RMSE for <code>lm1</code> manually as <code>sqrt(mean(residuals^2))</code>. Then compute it using <code>Metrics::rmse()</code>. Do they match?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-17" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.17</strong></span> <strong>Compare RMSE across models</strong></p>
+<p>Compute RMSE for all three models using <code>Metrics::rmse()</code>. Which model has the lowest error?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-7-making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="part-7-making-predictions">Part 7: Making predictions</h2>
+<div id="exr-18" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.18</strong></span> <strong>Predict life expectancy for Ukraine (lm1)</strong></p>
+<p>Use <code>lm1</code> to predict life expectancy for Ukraine assuming average annual income = <code>12 * 600</code> USD. Create a one-row data frame with that <code>gdpPercap</code>, then use <code>predict()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-19" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.19</strong></span> <strong>Predict with multiple predictors (lm3)</strong></p>
+<p>Use <code>lm3</code> to predict life expectancy for Ukraine in 2007. Create a one-row data frame with <code>gdpPercap = 7200</code>, <code>year = 2007</code>, <code>continent = "Europe"</code> (as a factor with levels from <code>gpmind</code>). Is the <code>lm3</code> prediction better or worse than <code>lm1</code>?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-8-train-test-split-does-the-model-generalize" class="level2">
+<h2 class="anchored" data-anchor-id="part-8-train-test-split-does-the-model-generalize">Part 8: Train / test split — does the model generalize?</h2>
+<p>A train/test split lets us check if the model generalizes to <strong>new data</strong>.</p>
+<div id="exr-20" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.20</strong></span> <strong>Split into train and test</strong></p>
+<p>Split <code>gpmind</code> into 75% training and 25% test sets using <code>runif()</code>. Use <code>set.seed(42)</code>. Call them <code>gp_train</code> and <code>gp_test</code>. Print the number of rows in each.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-21" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.21</strong></span> <strong>Train RMSE vs test RMSE</strong></p>
+<p>Train <code>lm1</code> again but only on <code>gp_train</code>. Call it <code>lm_tr</code>. Compute RMSE on the training set and RMSE on the test set. Are they close? What would a big gap mean?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+<div id="exr-22" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.22</strong></span> <strong>Plot predictions on the test set</strong></p>
+<p>Plot predicted vs actual <code>lifeExp</code> for the <strong>test set only</strong>. Add <code>geom_abline()</code> in blue. Write a comment about what you observe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -742,14 +905,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./08.html" class="pagination-link" aria-label="08 Data Aggregation and Grouping with dplyr">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">08 Data Aggregation and Grouping with dplyr</span></span>
+      <a href="./13.html" class="pagination-link" aria-label="13 Data Visualization: Themes, Fonts, and Custom Styling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">13 Data Visualization: Themes, Fonts, and Custom Styling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./10.html" class="pagination-link" aria-label="10 Data Manipulation with IMDb Dataset">
-        <span class="nav-page-text"><span class="chapter-title">10 Data Manipulation with IMDb Dataset</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
